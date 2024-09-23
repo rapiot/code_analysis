@@ -28,7 +28,6 @@
 
 #include "../../rat_utilities/headers/rat_utilities.h"                 // Conversions and other math related utilities
 #include "../../rat_utilities/headers/rat_mcu_utilities.h"             // Delays, sleep, and watchdog utilities
-#include "../../rat_utilities/headers/rat_debug_utilities.h"           // Debugging utilities based on software UART
 #include "../../rat_utilities/headers/rat_microchip_pic18f_k22.h"      // Extreme low power 8-bit PIC microcontroller family
 #include "../../rat_sensors/headers/rat_sensirion_sht4x.h"             // Temperature and humidity sensor, I2C
 #include "../../rat_radio_modules/headers/rat_lorawan.h"               // LoRaWAN definitions
