@@ -32,8 +32,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../../rat_application/headers/defines.h"
-
 // ----------------------------------------------------------------------------------------------------
 // Includes
 // ----------------------------------------------------------------------------------------------------
@@ -43,11 +41,9 @@
 #include "../../rat_utilities/headers/rat_mcu_utilities.h"
 #include "../../rat_utilities/headers/rat_uart_utilities.h"
 
-#ifdef TEST_MODE
-    #include "../../rat_utilities/headers/rat_debug_utilities.h"
-#endif
-
 #include "../headers/rat_rakwireless_rakx.h"
+
+#define RAT_UART_BUFFER_SIZE 64
 
 // ----------------------------------------------------------------------------------------------------
 // Buffers

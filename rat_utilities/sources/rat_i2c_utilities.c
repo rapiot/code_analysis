@@ -20,10 +20,6 @@
 
 #include "../../rat_utilities/headers/rat_i2c_utilities.h"
 
-#ifdef TEST_MODE
-  #include "../../rat_utilities/headers/rat_debug_utilities.h"
-#endif
-
 // ----------------------------------------------------------------------------------------------------
 // Write
 //

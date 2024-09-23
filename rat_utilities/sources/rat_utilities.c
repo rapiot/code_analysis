@@ -19,8 +19,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "../../rat_application/headers/defines.h"
-
 #include "../../rat_utilities/headers/rat_utilities.h"
 
 // ----------------------------------------------------------------------------------------------------

@@ -4,45 +4,15 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2020 - 2023 Rapiot Open Hardware Project
+// Copyright (c) 2020 - 2024 Rapiot Open Hardware Project
 //
 // Known limitations :
 //
-//   The test platform does not include a secondary oscillator and
-//   therefore the interrupt timer does not work in case of the test platform.
-//   This affects both the timing and the sleep function of the application.
+//   There are no known limitations
 //
 // Known issues :
 //
 //   There are no known issues.
-//
-// Test instructions for MikroElektronika EasyPIC v8 :
-//
-//   - Use a suitable 8-bit mcu from PIC18 K22with a 28 pin package.
-//
-//   - Add a 32,768 KHz crystal oscillator with load capacitors to pins RA6 and RA7.
-//
-//   - Use mikroBus socket 1 for radio modules.
-//      + Note that the reset and chip select pins of the socket are not available.
-//
-//   - Use mikroBus socket 2 for humidity and temperature sensors and thermocouples.
-//      + Note that reset pin RA0 and chip select pin RA5 of the socket are available.
-//
-//   - Use mikroBus socket 5 for other sensors if necessary.
-//      + Note that reset pin of the socket is not available and the chip select pin RA4 is available.
-//
-//   - Set pin RA2 to the UART TX and pin RA3 to the UART RX for the debug trace.
-//
-//   - No additional hardware or connectors are needed, but apply pull up or down resistors if necessary!
-//
-// Test instruction for Qoitech Otii Arc :
-//
-//   Set the supply voltage to 3.3 V and the maximum current to 300 mA.
-//
-//   Connect the supply voltage to the VDD and the ground to the GND.
-//
-//   Connect the RX to the DBG and set the baud rate to 9,600 bps
-//   (one start bit, one stop bit, eight data bits, and no parity bit).
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
@@ -56,24 +26,27 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../headers/defines.h"
-
 #include "../../rat_utilities/headers/rat_utilities.h"                 // Conversions and other math related utilities
 #include "../../rat_utilities/headers/rat_mcu_utilities.h"             // Delays, sleep, and watchdog utilities
 #include "../../rat_utilities/headers/rat_debug_utilities.h"           // Debugging utilities based on software UART
-
 #include "../../rat_utilities/headers/rat_microchip_pic18f_k22.h"      // Extreme low power 8-bit PIC microcontroller family
-
-#include "../../rat_sensors/headers/rat_maxim_integrated_max31855.h"   // Thermocouple sensor, SPI
 #include "../../rat_sensors/headers/rat_sensirion_sht4x.h"             // Temperature and humidity sensor, I2C
-
 #include "../../rat_radio_modules/headers/rat_lorawan.h"               // LoRaWAN definitions
 #include "../../rat_radio_modules/headers/rat_rakwireless_rakx.h"      // LoRaWAN radio module, UART
-#include "../../rat_radio_modules/headers/rat_risinghf_rhfx.h"         // LoRaWAN radio module, UART
 
-#ifdef TEST_MODE
-  #include "../headers/rat_sensor_platform_debug.h"                    // Application debugging utilities
-#endif
+// ----------------------------------------------------------------------------------------------------
+// Constants
+// ----------------------------------------------------------------------------------------------------
+#define APP_STABILIZATION_DELAY 1000   // 1,000 ms
+
+#define APP_TIMER_CONSTANT 4  // 4 seconds
+
+#define APP_SLEEP_CYCLES 15            // 15 minutes
+
+#define APP_SLEEP_CYCLES_THRESHOLD 96   // 96 * 15 = 24 * 60 = 24 hours
+
+#define APP_UPLINK_DATA_SIZE   5
+#define APP_DOWNLINK_DATA_SIZE 1
 
 // ----------------------------------------------------------------------------------------------------
 // Global variables

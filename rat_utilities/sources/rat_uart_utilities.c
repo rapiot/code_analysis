@@ -18,15 +18,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../../rat_application/headers/defines.h"
-
 #include "../../rat_utilities/headers/rat_utilities.h"
 #include "../../rat_utilities/headers/rat_utilities.h"
 #include "../../rat_utilities/headers/rat_uart_utilities.h"
 
-#ifdef TEST_MODE
-  #include "../../rat_utilities/headers/rat_debug_utilities.h"
-#endif
+
+#define RAT_UART_BUFFER_SIZE 64
 
 // ----------------------------------------------------------------------------------------------------
 // Clear the buffer
