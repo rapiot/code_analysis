@@ -247,7 +247,7 @@ void rat_uart_receive_response (rat_uart_separator   leading_separator,
   // --------------------------------------------------------------------------------------------------
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
-  uint8_t n;
+  uint8_t n = 0;
   
   bool value_flag = false;
 
@@ -261,9 +261,7 @@ void rat_uart_receive_response (rat_uart_separator   leading_separator,
   // --------------------------------------------------------------------------------------------------
   // Read value (if applicable) and response code
   // --------------------------------------------------------------------------------------------------
-  n = 0;
-
-  while (true) {
+  while (n < RAT_UART_BUFFER_SIZE) {
     while (!UART1_Data_Ready()) {
       // Wait for a new character
     }
@@ -282,10 +280,6 @@ void rat_uart_receive_response (rat_uart_separator   leading_separator,
       } else {
         break;
       }
-    }
-
-    if (n == RAT_UART_BUFFER_SIZE - 1) {
-      break;
     }
     
     n++;

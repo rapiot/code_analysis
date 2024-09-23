@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_utilities\sources\rat_uart_utilities.c
+Value=rat_utilities\headers\rat_uart_utilities.h
 [USE_EEPROM]
 Value=1
 [USE_HEAP]
@@ -35,7 +35,8 @@ ActiveImageIndex=-1
 [OPENED_FILES]
 File0=.\rat_utilities\sources\rat_uart_utilities.c
 File1=.\rat_utilities\headers\rat_uart_utilities.h
-Count=2
+File2=.\rat_radio_modules\sources\rat_rakwireless_rakx.c
+Count=3
 [EEPROM]
 File0=rapiot_sensor_platform.ihex
 Count=1
