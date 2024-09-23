@@ -304,7 +304,7 @@ void rat_uart_receive_response (rat_uart_separator   leading_separator,
 
   while (true) {
     while (!UART1_Data_Ready()) {
-
+      // Wait for a new character
     }
 
     response[n] = UART1_Read();

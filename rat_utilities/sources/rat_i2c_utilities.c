@@ -29,29 +29,16 @@
 //   payload - The payload.
 //   end     - Defines if the stop bit is applied. If the stop bit is not applied, it is ignored.
 // ----------------------------------------------------------------------------------------------------
-void rat_i2c_write_stream (uint8_t   mode,
-                           uint8_t   address,
-                           uint8_t   length,
-                           uint8_t * payload,
-                           uint8_t   end)
+void rat_i2c_write_stream (      uint8_t   mode,
+                                 uint8_t   address,
+                                 uint8_t   length,
+                           const uint8_t * payload,
+                                 uint8_t   end)
 {
   // --------------------------------------------------------------------------------------------------
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
   uint8_t n;
-
-  // --------------------------------------------------------------------------------------------------
-  // Debugging STARTS
-  // --------------------------------------------------------------------------------------------------
-  #ifdef TEST_MODE
-    debug_write_new_line();
-    debug_write_separator();
-    debug_write_start_line();
-    debug_write_string("I2C WR : ");
-  #endif
-  // --------------------------------------------------------------------------------------------------
-  // Debugging ENDS
-  // --------------------------------------------------------------------------------------------------
 
   // --------------------------------------------------------------------------------------------------
   // Start condition
@@ -99,13 +86,6 @@ void rat_i2c_read_stream (uint8_t   mode,
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
   uint8_t n;
-
-  #ifdef TEST_MODE
-    debug_write_new_line();
-    debug_write_separator();
-    debug_write_start_line();
-    debug_write_string("I2C RD : ");
-  #endif
 
   // --------------------------------------------------------------------------------------------------
   // Start condition

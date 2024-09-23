@@ -307,7 +307,7 @@ bool rat_string_compare (char * a,
   
   bool result = true;
   
-  length_a = strlen(a);
+  length_a = strlen((char *)a);
   length_b = strlen(b);
 
   if (length_a < length_b) {
