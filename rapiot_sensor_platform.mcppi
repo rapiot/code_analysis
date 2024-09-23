@@ -96,10 +96,14 @@ IVT_BASE=00000008
 11=sources
 14=rat_application
 15=sources
+17=rat_sensors
+18=sources
 21=Header Files
 30=rat_radio_modules
 31=headers
-Count=11
+34=rat_sensors
+35=headers
+Count=15
 [LIB_EXPANDED_NODES]
 0=
 1=
