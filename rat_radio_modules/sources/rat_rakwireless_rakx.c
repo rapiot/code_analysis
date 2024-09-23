@@ -100,12 +100,6 @@ static bool rat_radio_command (char * req,
   // --------------------------------------------------------------------------------------------------
   // Request
   // --------------------------------------------------------------------------------------------------
-#ifdef TEST_MODE
-  rat_debug_write_start_line();
-  rat_debug_write_start_line();
-  rat_debug_write_string(req);
-#endif
-
   rat_uart_send_request(RAT_UART_NONE,
                         RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
                         req);
@@ -117,11 +111,6 @@ static bool rat_radio_command (char * req,
                             RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
                             rsp,
                             val);
-
-#ifdef TEST_MODE
-  rat_debug_write_start_line();
-  rat_debug_write_string(rsp);
-#endif
 
   // --------------------------------------------------------------------------------------------------
   // Reference
@@ -325,15 +314,15 @@ bool rat_radio_module_set_abp_parameters (void)
   // --------------------------------------------------------------------------------------------------
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
-  bool result;
+  bool result = true;
 
   // --------------------------------------------------------------------------------------------------
   // Set the parameters to the radio module
   // --------------------------------------------------------------------------------------------------
-  result = rat_radio_module_set_device_eui();
-  result = rat_radio_module_set_device_address();
-  result = rat_radio_module_set_network_session_key();
-  result = rat_radio_module_set_application_session_key();
+  result &= rat_radio_module_set_device_eui();
+  result &= rat_radio_module_set_device_address();
+  result &= rat_radio_module_set_network_session_key();
+  result &= rat_radio_module_set_application_session_key();
 
   return result;
 }
@@ -382,7 +371,11 @@ bool rat_radio_module_transmit (uint8_t   uplink_length,     // Uplink payload l
                               strlen(g_rat_req_buffer));
 
   if (!rat_radio_command(g_rat_req_buffer,g_rat_rsp_buffer,false)) {
+    *uplink_status = false;
+  
     return false;
+  } else {
+    *uplink_status = true;
   }
   
   // --------------------------------------------------------------------------------------------------

@@ -55,7 +55,7 @@ void lorawan_read_abp_parameters (char * device_address,
 void lorawan_read_device_address (char * device_address)
 {
   uint8_t n;
-  
+
   for (n = 0;n < LORAWAN_DEVICE_ADDRESS_BITS / 8;n++) {
     device_address[n * 2]     = rat_hex_to_char(EEPROM_Read(LORAWAN_DEVICE_ADDRESS_BASE + n) >> 4);
     device_address[n * 2 + 1] = rat_hex_to_char(EEPROM_Read(LORAWAN_DEVICE_ADDRESS_BASE + n) & 0x0F);
@@ -65,7 +65,7 @@ void lorawan_read_device_address (char * device_address)
 void lorawan_read_device_eui (char * device_eui)
 {
   uint8_t n;
-  
+
   for (n = 0;n < LORAWAN_DEVICE_EUI_BITS / 8;n++) {
     device_eui[n * 2]     = rat_hex_to_char(EEPROM_Read(LORAWAN_DEVICE_EUI_BASE + n) >> 4);
     device_eui[n * 2 + 1] = rat_hex_to_char(EEPROM_Read(LORAWAN_DEVICE_EUI_BASE + n) & 0x0F);
@@ -75,7 +75,7 @@ void lorawan_read_device_eui (char * device_eui)
 void lorawan_read_network_session_key (char * network_session_key)
 {
   uint8_t n;
-  
+
   for (n = 0;n < LORAWAN_NETWORK_SESSION_KEY_BITS / 8;n++) {
     network_session_key[n * 2]     = rat_hex_to_char(EEPROM_Read(LORAWAN_NETWORK_SESSION_KEY_BASE + n) >> 4);
     network_session_key[n * 2 + 1] = rat_hex_to_char(EEPROM_Read(LORAWAN_NETWORK_SESSION_KEY_BASE + n) & 0x0F);
@@ -85,10 +85,9 @@ void lorawan_read_network_session_key (char * network_session_key)
 void lorawan_read_application_session_key (char * application_session_key)
 {
   uint8_t n;
-  
+
   for (n = 0;n < LORAWAN_APPLICATION_SESSION_KEY_BITS / 8;n++) {
     application_session_key[n * 2]     = rat_hex_to_char(EEPROM_Read(LORAWAN_APPLICATION_SESSION_KEY_BASE + n) >> 4);
     application_session_key[n * 2 + 1] = rat_hex_to_char(EEPROM_Read(LORAWAN_APPLICATION_SESSION_KEY_BASE + n) & 0x0F);
   }
 }
-

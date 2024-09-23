@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_application\sources\rat_sensor_platform.c
+Value=rat_radio_modules\sources\rat_rakwireless_rakx.c
 [USE_EEPROM]
 Value=1
 [USE_HEAP]
@@ -35,7 +35,9 @@ Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
 File0=.\rat_application\sources\rat_sensor_platform.c
-Count=1
+File1=.\rat_radio_modules\sources\rat_lorawan.c
+File2=.\rat_radio_modules\sources\rat_rakwireless_rakx.c
+Count=3
 [EEPROM]
 File0=rapiot_sensor_platform.ihex
 Count=1
@@ -94,7 +96,10 @@ IVT_BASE=00000008
 11=sources
 14=rat_application
 15=sources
-Count=8
+21=Header Files
+30=rat_radio_modules
+31=headers
+Count=11
 [LIB_EXPANDED_NODES]
 0=
 1=
