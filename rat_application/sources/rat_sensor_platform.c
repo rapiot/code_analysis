@@ -98,11 +98,6 @@ void app_sleep (void)
 void app_init (void)
 {
   // --------------------------------------------------------------------------------------------------
-  // Auxiliary variables
-  // --------------------------------------------------------------------------------------------------
-  bool result;
-  
-  // --------------------------------------------------------------------------------------------------
   // Init global variables
   // --------------------------------------------------------------------------------------------------
   gbl_sleep_cycles         = APP_SLEEP_CYCLES;
@@ -171,158 +166,39 @@ void app_task (void)
   // --------------------------------------------------------------------------------------------------
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
-  uint8_t index;
-  
   bool uplink_status    = false;
   bool downlink_status  = false;
 
   uint8_t uplink_data [APP_UPLINK_DATA_SIZE];
   uint8_t downlink_data [APP_DOWNLINK_DATA_SIZE];
 
-  // --------------------------------------------------------------------------------------------------
-  // Sensors
-  // --------------------------------------------------------------------------------------------------
-  #ifdef APP_HUMIDITY_SENSOR
-    float temperature;
-    float humidity;
-  #endif
+  float temperature;
+  float humidity;
 
-  #ifdef APP_THERMOCOUPLE_SENSOR
-    float thermocouple_temperature;
-    float internal_temperature;
-
-    uint8_t fault_flag;
-    uint8_t short_vcc_flag;
-    uint8_t short_gnd_flag;
-    uint8_t open_circuit_flag;
-  
-    uint8_t flags;
-  #endif
-  
   // --------------------------------------------------------------------------------------------------
   // Measure
   // --------------------------------------------------------------------------------------------------
-
-  // --------------------------------------------------------------------------------------------------
-  // Temperature and humidity sensor
-  // --------------------------------------------------------------------------------------------------
-  #ifdef APP_HUMIDITY_SENSOR
-    if (!rat_humidity_sensor_measure(&temperature,
-                                     &humidity)) {
-      rat_reset();
-    }
-  #endif
-
-  // --------------------------------------------------------------------------------------------------
-  // Thermocouple sensor
-  // --------------------------------------------------------------------------------------------------
-  #ifdef APP_THERMOCOUPLE_SENSOR
-    rat_thermocouple_sensor_measure(&thermocouple_temperature,
-                                    &internal_temperature,
-                                    &fault_flag,
-                                    &short_vcc_flag,
-                                    &short_gnd_flag,
-                                    &open_circuit_flag);
-                                    
-    if (fault_flag        == 1 ||
-        short_vcc_flag    == 1 ||
-        short_gnd_flag    == 1 ||
-        open_circuit_flag == 1) {
-      thermocouple_temperature = 0;
-      internal_temperature     = 0;
-    }
-    
-    flags = fault_flag;
-    
-    flags = flags << 1;
-    
-    flags += short_vcc_flag;
-    
-    flags = flags << 1;
-
-    flags += short_gnd_flag;
-    
-    flags = flags << 1;
-
-    flags += open_circuit_flag;
-  #endif
-
-  // --------------------------------------------------------------------------------------------------
-  // DEBUG STARTS
-  // --------------------------------------------------------------------------------------------------
-  #ifdef TEST_MODE
-    // ------------------------------------------------------------------------------------------------
-    // Temperature and humidity sensor
-    // ------------------------------------------------------------------------------------------------
-    #ifdef APP_HUMIDITY_SENSOR
-      app_debug_humidity(temperature,
-                         humidity);
-    #endif
-    
-    // ------------------------------------------------------------------------------------------------
-    // Thermocouple sensor
-    // ------------------------------------------------------------------------------------------------
-    #ifdef APP_THERMOCOUPLE_SENSOR
-      app_debug_thermocouple(thermocouple_temperature,
-                             internal_temperature,
-                             fault_flag,
-                             short_vcc_flag,
-                             short_gnd_flag,
-                             open_circuit_flag);
-    #endif
-  #endif
-  // --------------------------------------------------------------------------------------------------
-  // DEBUG ENDS
-  // --------------------------------------------------------------------------------------------------
+  if (!rat_humidity_sensor_measure(&temperature, &humidity)) {
+    rat_reset();
+  }
 
   // --------------------------------------------------------------------------------------------------
   // Create the payload
   // --------------------------------------------------------------------------------------------------
-  index = 0;
-  
-  // --------------------------------------------------------------------------------------------------
-  // Temperature and humidity (if applicable)
-  // --------------------------------------------------------------------------------------------------
-  #ifdef APP_HUMIDITY_SENSOR
-    uplink_data[index]     = rat_convert_twos_complement(temperature,2) >> 16;
-    uplink_data[index + 1] = rat_convert_twos_complement(temperature,2) >> 8;
-    uplink_data[index + 2] = rat_convert_twos_complement(temperature,2) % 256;
-
-    uplink_data[index + 3] = rat_convert_twos_complement(humidity,1) >> 8;
-    uplink_data[index + 4] = rat_convert_twos_complement(humidity,1) % 256;
-
-    index = index + 5;
-  #endif
 
   // --------------------------------------------------------------------------------------------------
-  // Thermocouple (if applicable)
+  // Temperature
   // --------------------------------------------------------------------------------------------------
-  #ifdef APP_THERMOCOUPLE_SENSOR
-    uplink_data[index]     = rat_convert_twos_complement(thermocouple_temperature,2) >> 16;
-    uplink_data[index + 1] = rat_convert_twos_complement(thermocouple_temperature,2) >> 8;
-    uplink_data[index + 2] = rat_convert_twos_complement(thermocouple_temperature,2) % 256;
-    
-    uplink_data[index + 3] = rat_convert_twos_complement(internal_temperature,2) >> 16;
-    uplink_data[index + 4] = rat_convert_twos_complement(internal_temperature,2) >> 8;
-    uplink_data[index + 5] = rat_convert_twos_complement(internal_temperature,2) % 256;
-    
-    uplink_data[index + 6] = flags;
-
-    index = index + 7;
-  #endif
+  uplink_data[0] = rat_convert_twos_complement(temperature,2) >> 16;
+  uplink_data[1] = rat_convert_twos_complement(temperature,2) >> 8;
+  uplink_data[2] = rat_convert_twos_complement(temperature,2) % 256;
 
   // --------------------------------------------------------------------------------------------------
-  // DEBUG STARTS
+  // Humidity
   // --------------------------------------------------------------------------------------------------
-  #ifdef TEST_MODE
-    app_debug_payload(uplink_data,index);
-    
-    app_debug_transmit_start();
-  #endif
-  // --------------------------------------------------------------------------------------------------
-  // DEBUG ENDS
-  // --------------------------------------------------------------------------------------------------
-  
+  uplink_data[3] = rat_convert_twos_complement(humidity,1) >> 8;
+  uplink_data[4] = rat_convert_twos_complement(humidity,1) % 256;
+
   // --------------------------------------------------------------------------------------------------
   // Transmit
   // --------------------------------------------------------------------------------------------------
@@ -342,35 +218,9 @@ void app_task (void)
   }
 
   // --------------------------------------------------------------------------------------------------
-  // DEBUG STARTS
-  // --------------------------------------------------------------------------------------------------
-  #ifdef TEST_MODE
-    if (downlink_status) {
-      app_debug_downlink(downlink_data);
-    }
-    app_debug_transmit_stop();
-
-    app_debug_sleep(gbl_sleep_cycles);
-  #endif
-  // --------------------------------------------------------------------------------------------------
-  // DEBUG ENDS
-  // --------------------------------------------------------------------------------------------------
-  
-  // --------------------------------------------------------------------------------------------------
   // Sleep
   // --------------------------------------------------------------------------------------------------
   app_sleep();
-
-  // --------------------------------------------------------------------------------------------------
-  // DEBUG STARTS
-  // --------------------------------------------------------------------------------------------------
-  #ifdef TEST_MODE
-    app_debug_wakeup();
-  #endif
-
-  // --------------------------------------------------------------------------------------------------
-  // DEBUG ENDS
-  // --------------------------------------------------------------------------------------------------
 }
 
 // ----------------------------------------------------------------------------------------------------
