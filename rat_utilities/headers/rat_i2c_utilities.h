@@ -40,11 +40,11 @@
 //   payload - The payload.
 //   end     - Defines if the stop bit is applied. If the stop bit is not applied, it is ignored.
 // ----------------------------------------------------------------------------------------------------
-void rat_i2c_write_stream (uint8_t   mode,
-                           uint8_t   address,
-                           uint8_t   length,
-                           uint8_t * payload,
-                           uint8_t   end);
+void rat_i2c_write_stream (      uint8_t   mode,
+                                 uint8_t   address,
+                                 uint8_t   length,
+                           const uint8_t * payload,
+                                 uint8_t   end);
 
 // ----------------------------------------------------------------------------------------------------
 // Read
