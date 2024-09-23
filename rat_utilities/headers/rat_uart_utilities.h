@@ -53,11 +53,3 @@ void rat_uart_receive_response (rat_uart_separator   leading_separator,
                                 rat_uart_separator   trailing_separator,
                                 char               * response,
                                 bool                 value);
-
-// ----------------------------------------------------------------------------------------------------
-// Receive response with delay
-// ----------------------------------------------------------------------------------------------------
-void rat_uart_receive_response_delay (rat_uart_separator   leading_separator,
-                                      rat_uart_separator   trailing_separator,
-                                      char               * response,
-                                      uint8_t              delay);
