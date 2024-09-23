@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_sensors\headers\rat_sensirion_sht4x.h
+Value=rat_sensors\sources\rat_sensirion_sht4x.c
 [USE_EEPROM]
 Value=1
 [USE_HEAP]
@@ -38,7 +38,13 @@ ActiveImageIndex=-1
 File0=.\rat_utilities\sources\rat_debug_utilities.c
 File1=.\rat_sensors\headers\rat_maxim_integrated_max31855.h
 File2=.\rat_sensors\headers\rat_sensirion_sht4x.h
-Count=3
+File3=.\rat_application\sources\rat_sensor_platform.c
+File4=.\rat_utilities\headers\rat_mcu_utilities.h
+File5=.\rat_utilities\sources\rat_mcu_utilities.c
+File6=.\rat_utilities\sources\rat_utilities.c
+File7=.\rat_utilities\headers\rat_utilities.h
+File8=.\rat_sensors\sources\rat_sensirion_sht4x.c
+Count=9
 [EEPROM]
 File0=rapiot_sensor_platform.ihex
 Count=1

@@ -32,11 +32,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// ----------------------------------------------------------------------------------------------------
-// Conditional compilation
-// ----------------------------------------------------------------------------------------------------
-#ifdef APP_HUMIDITY_SENSOR
-
 #include "../../rat_utilities/headers/rat_utilities.h"
 #include "../../rat_utilities/headers/rat_mcu_utilities.h"
 #include "../../rat_utilities/headers/rat_i2c_utilities.h"
@@ -330,5 +325,3 @@ uint8_t rat_humidity_sensor_measure (float * temperature,
     return 0;
   }
 }
-
-#endif

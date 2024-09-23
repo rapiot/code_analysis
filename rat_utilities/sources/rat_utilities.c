@@ -453,14 +453,6 @@ uint32_t rat_interrupt_counter (void)
 }
 
 // ----------------------------------------------------------------------------------------------------
-// Reset
-// ----------------------------------------------------------------------------------------------------
-void rat_reset (void)
-{
-  asm RESET;
-}
-
-// ----------------------------------------------------------------------------------------------------
 // Interrupt routine implementation
 //
 // Note that the implementation of the interrupt routine will be called automatically in case of

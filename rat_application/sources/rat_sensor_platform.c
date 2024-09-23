@@ -119,44 +119,10 @@ void app_init (void)
   rat_init_interrupt_counter();
 
   // --------------------------------------------------------------------------------------------------
-  // DEBUG STARTS
-  // --------------------------------------------------------------------------------------------------
-  #ifdef TEST_MODE
-    rat_debug_write_separator();
-    rat_debug_write_start_line();
-    rat_debug_write_string("Rapiot Indoor Monitor");
-    rat_debug_write_start_line();
-
-    rat_debug_write_start_line();
-    rat_debug_write_string("RAK Wireless RAK3172H (EU868)");
-
-    #ifdef APP_HUMIDITY_SENSOR
-      rat_debug_write_start_line();
-      rat_debug_write_string("Sensirion SHT40");
-    #endif
-
-    #ifdef APP_THERMOCOUPLE_SENSOR
-      rat_debug_write_start_line();
-      rat_debug_write_string("Maxim Integrated MAX31855");
-    #endif
-
-    rat_debug_write_separator();
-  #endif
-  // --------------------------------------------------------------------------------------------------
-  // DEBUG ENDS
-  // --------------------------------------------------------------------------------------------------
-
-  // --------------------------------------------------------------------------------------------------
   // Init the sensors
   // --------------------------------------------------------------------------------------------------
-  #ifdef APP_HUMIDITY_SENSOR
-    rat_humidity_sensor_init();
-  #endif
-  
-  #ifdef APP_THERMOCOUPLE_SENSOR
-    rat_thermocouple_sensor_init();
-  #endif
-  
+  rat_humidity_sensor_init();
+
   // --------------------------------------------------------------------------------------------------
   // Init and reset the radio module
   // --------------------------------------------------------------------------------------------------
@@ -181,8 +147,13 @@ void app_init (void)
   // --------------------------------------------------------------------------------------------------
   // LoRaWAN setup
   // --------------------------------------------------------------------------------------------------
-  result = rat_radio_module_set_abp_mode();
-  result = rat_radio_module_set_abp_parameters();
+  if (!rat_radio_module_set_abp_mode()) {
+      rat_reset();
+  }
+  
+  if (!rat_radio_module_set_abp_parameters()) {
+      rat_reset();
+  }
 
   // --------------------------------------------------------------------------------------------------
   // Wait for an interrupt from the timer
