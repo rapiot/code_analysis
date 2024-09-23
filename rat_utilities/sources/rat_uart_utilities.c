@@ -30,10 +30,8 @@
 // ----------------------------------------------------------------------------------------------------
 void rat_uart_clear_buffer ()
 {
-  char temp;
-
   while (UART1_Data_Ready()) {
-    temp = UART1_Read();
+    (void) UART1_Data_Ready();
   }
 }
 
@@ -182,6 +180,12 @@ static bool rat_check_separator (rat_uart_separator   separator,
     } else {
       return false;
     }
+
+  // --------------------------------------------------------------------------------------------------
+  // Invalid, always return false
+  // --------------------------------------------------------------------------------------------------
+  } else {
+    return false;
   }
 }
 

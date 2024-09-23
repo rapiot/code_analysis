@@ -417,11 +417,9 @@ void rat_wait_interrupt (void)
 {
   uint32_t interrupt_counter = g_interrupt_counter;
 
-#ifdef APP_EASYPICv8
-  Delay_ms(4000);
-#else
-  while (interrupt_counter == g_interrupt_counter) { }
-#endif
+  while (interrupt_counter == g_interrupt_counter) {
+    // Wait until the interrupt
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------
