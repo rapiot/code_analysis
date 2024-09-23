@@ -82,7 +82,7 @@ static void rat_uart_read_separator (rat_uart_separator separator)
     // ------------------------------------------------------------------------------------------------
     while (1) {
       while (!UART1_Data_Ready()) {
-
+        // Wait for a new character
       }
 
       temp = UART1_Read();
@@ -97,7 +97,7 @@ static void rat_uart_read_separator (rat_uart_separator separator)
     // ------------------------------------------------------------------------------------------------
     while (1) {
       while (!UART1_Data_Ready()) {
-
+        // Wait for a new character
       }
 
       temp = UART1_Read();
@@ -113,7 +113,7 @@ static void rat_uart_read_separator (rat_uart_separator separator)
   } else if (separator == RAT_UART_CARRIER_RETURN) {
     while (1) {
       while (!UART1_Data_Ready()) {
-
+        // Wait for a new character
       }
 
       temp = UART1_Read();
@@ -129,7 +129,7 @@ static void rat_uart_read_separator (rat_uart_separator separator)
   } else if (separator == RAT_UART_NEW_LINE) {
     while (1) {
       while (!UART1_Data_Ready()) {
-
+        // Wait for a new character
       }
 
       temp = UART1_Read();
@@ -263,15 +263,6 @@ void rat_uart_send_request (rat_uart_separator   leading_separator,
     }
   }
 
-  #ifdef TEST_MODE
-    rat_debug_write_new_line();
-    rat_debug_write_separator();
-    rat_debug_write_start_line();
-    rat_debug_write_string("UART WR : ");
-    rat_debug_write_string(request);
-    rat_debug_write_separator();
-  #endif
-
   // --------------------------------------------------------------------------------------------------
   // Write trailing separator
   // --------------------------------------------------------------------------------------------------
@@ -334,15 +325,6 @@ void rat_uart_receive_response (rat_uart_separator   leading_separator,
     
     n++;
   }
-
-  #ifdef TEST_MODE
-    rat_debug_write_new_line();
-    rat_debug_write_separator();
-    rat_debug_write_start_line();
-    rat_debug_write_string("UART RD : ");
-    rat_debug_write_string(response);
-    rat_debug_write_separator();
-  #endif
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -389,13 +371,4 @@ void rat_uart_receive_response_delay (rat_uart_separator   leading_separator,
       n++;
     }
   }
-
-  #ifdef TEST_MODE
-    rat_debug_write_new_line();
-    rat_debug_write_separator();
-    rat_debug_write_start_line();
-    rat_debug_write_string("UART RD : ");
-    rat_debug_write_string(response);
-    rat_debug_write_separator();
-  #endif
 }
