@@ -307,7 +307,7 @@ bool rat_string_compare (char * a,
   
   bool result = true;
   
-  length_a = strlen((char *)a);
+  length_a = strlen(a);
   length_b = strlen(b);
 
   if (length_a < length_b) {
@@ -364,7 +364,7 @@ bool rat_string_find_char (char    * a,
 {
   bool result = false;
   
-  uint8_t n;
+  uint8_t n = 0;
   
   while (a[n] != '\0') {
     if (a[n] == b) {

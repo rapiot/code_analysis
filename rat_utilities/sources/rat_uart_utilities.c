@@ -211,17 +211,10 @@ static void rat_remove_separator (rat_uart_separator   separator,
     new_index = new_index - 2;
 
   // --------------------------------------------------------------------------------------------------
-  // '\r'
+  // '\r' or '\n'
   // --------------------------------------------------------------------------------------------------
-  } else if (separator == RAT_UART_CARRIER_RETURN) {
-    stream[new_index] = '\0';
-    
-    new_index = new_index - 1;
-
-  // --------------------------------------------------------------------------------------------------
-  // '\n'
-  // --------------------------------------------------------------------------------------------------
-  } else if (separator == RAT_UART_NEW_LINE) {
+  } else if (separator == RAT_UART_CARRIER_RETURN ||
+             separator == RAT_UART_NEW_LINE) {
     stream[new_index] = '\0';
     
     new_index = new_index - 1;

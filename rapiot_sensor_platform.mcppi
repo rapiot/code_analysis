@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_utilities\headers\rat_i2c_utilities.h
+Value=rat_utilities\headers\rat_utilities.h
 [USE_EEPROM]
 Value=1
 [USE_HEAP]
@@ -43,7 +43,8 @@ File6=.\rat_radio_modules\sources\rat_rakwireless_rakx.c
 File7=.\rat_application\sources\rat_sensor_platform.c
 File8=.\rat_utilities\headers\rat_i2c_utilities.h
 File9=.\rat_sensors\sources\rat_sensirion_sht4x.c
-Count=10
+File10=.\rat_utilities\headers\rat_utilities.h
+Count=11
 [EEPROM]
 File0=rapiot_sensor_platform.ihex
 Count=1
