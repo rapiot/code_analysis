@@ -4,15 +4,7 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2021 - 2023 Rapiot Open Hardware Project
-//
-// Known limitations :
-//
-//   There are no known limitations.
-//
-// Known issues :
-//
-//   There are no known issues.
+// Copyright (c) 2021 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
@@ -277,7 +269,7 @@ uint8_t rat_humidity_sensor_measure (float * temperature,
   //
   //       SHT4X sends NACK response if data is not ready.
   // --------------------------------------------------------------------------------------------------
-  Delay_ms(SHT4X_MEASUREMENT_DELAY);
+  rat_delay(SHT4X_MEASUREMENT_DELAY);
 
   // --------------------------------------------------------------------------------------------------
   // Response

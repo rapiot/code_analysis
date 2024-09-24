@@ -4,15 +4,7 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2021 - 2023 Rapiot Open Hardware Project
-//
-// Known limitations :
-//
-//   There are no known limitations.
-//
-// Known issues :
-//
-//   There are no known issues.
+// Copyright (c) 2021 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
@@ -22,17 +14,9 @@
 // ----------------------------------------------------------------------------------------------------
 // Includes
 // ----------------------------------------------------------------------------------------------------
-
-
-// ----------------------------------------------------------------------------------------------------
-// Conditional compilation
-// ----------------------------------------------------------------------------------------------------
-#ifdef APP_THERMOCOUPLE_SENSOR
-
-// ----------------------------------------------------------------------------------------------------
-// Includes
-// ----------------------------------------------------------------------------------------------------
+#include <stdlib.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 // ----------------------------------------------------------------------------------------------------
 // Defines
@@ -44,7 +28,6 @@
 #define RAT_THERMOCOUPLE_SENSOR_TEMPERATURE_MINIMUM -270
 #define RAT_THERMOCOUPLE_SENSOR_TEMPERATURE_MAXIMUM 1800
 
-
 // ----------------------------------------------------------------------------------------------------
 // Delays
 // ----------------------------------------------------------------------------------------------------
@@ -55,8 +38,10 @@
 // ----------------------------------------------------------------------------------------------------
 // Typedefs
 // ----------------------------------------------------------------------------------------------------
-typedef enum rat_thermocouple_sensor_data_types {RAT_THERMOCOUPLE_SENSOR_THERMOCOUPLE_TEMPERATURE_DATA,
-                                                 RAT_THERMOCOUPLE_SENSOR_INTERNAL_TEMPERATURE_DATA} rat_thermocouple_sensor_data_type;
+typedef enum rat_thermocouple_sensor_data_types {
+  RAT_THERMOCOUPLE_SENSOR_THERMOCOUPLE_TEMPERATURE_DATA,
+  RAT_THERMOCOUPLE_SENSOR_INTERNAL_TEMPERATURE_DATA
+} rat_thermocouple_sensor_data_type;
 
 // ----------------------------------------------------------------------------------------------------
 // Pin names, types, and directions
@@ -94,5 +79,3 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
                                       uint8_t * short_vcc_flag,
                                       uint8_t * short_gnd_flag,
                                       uint8_t * open_circuit_flag);
-
-#endif

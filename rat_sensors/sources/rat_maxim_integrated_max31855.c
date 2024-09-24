@@ -4,15 +4,7 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2021 - 2023 Rapiot Open Hardware Project
-//
-// Known limitations :
-//
-//   There are no known limitations.
-//
-// Known issues :
-//
-//   There are no known issues.
+// Copyright (c) 2021 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
@@ -22,22 +14,14 @@
 // ----------------------------------------------------------------------------------------------------
 // Includes
 // ----------------------------------------------------------------------------------------------------
+#include <stdlib.h>
 #include <stdint.h>
+#include <stdbool.h>
 
-// ----------------------------------------------------------------------------------------------------
-// Conditional compilation
-// ----------------------------------------------------------------------------------------------------
-#ifdef APP_THERMOCOUPLE_SENSOR
-
-#include "../../rat_utilities/headers/rat_utilities.h"
-#include "../../rat_utilities/headers/rat_mcu_utilities.h"
+#include "../../rat_utilities/headers/rat_math_utilities.h"
+#include "../../rat_utilities/headers/rat_pic_utilities.h"
 #include "../../rat_utilities/headers/rat_i2c_utilities.h"
-
-#ifdef TEST_MODE
-  #include "../../rat_utilities/headers/rat_debug_utilities.h"
-#endif
-
-#include "../headers/rat_maxim_integrated_max31855.h"
+#include "../../rat_sensors/headers/rat_maxim_integrated_max31855.h"
 
 // ----------------------------------------------------------------------------------------------------
 // Static functions
@@ -218,13 +202,13 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
   // --------------------------------------------------------------------------------------------------
   RAT_THERMOCOUPLE_SENSOR_CSL_PIN = 0b0;
    
-  Delay_ms(RAT_THERMOCOUPLE_SENSOR_CHIP_SELECT_DELAY);
+  rat_delay(RAT_THERMOCOUPLE_SENSOR_CHIP_SELECT_DELAY);
   
   for (n = 0;n < 4;n++) {
     response[n] = SPI_Read(dummy_buffer);
   }
   
-  Delay_ms(RAT_THERMOCOUPLE_SENSOR_CHIP_SELECT_DELAY);
+  rat_delay(RAT_THERMOCOUPLE_SENSOR_CHIP_SELECT_DELAY);
 
   // --------------------------------------------------------------------------------------------------
   // Disable the sensor
@@ -281,5 +265,3 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
   *internal_temperature     = rat_thermocouple_sensor_convert_temperature(raw_internal_temperature_data,
                                                                           RAT_THERMOCOUPLE_SENSOR_INTERNAL_TEMPERATURE_DATA);
 }
-
-#endif
