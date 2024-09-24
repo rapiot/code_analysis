@@ -53,8 +53,8 @@
 // -----------------------------------------------------------------------------
 // Minimums and maximums
 // -----------------------------------------------------------------------------
-#define RAT_HUMIDITY_SENSOR_TEMPERATURE_MINIMUM -40.0   // The minimum temperature rating is - 40 C
-#define RAT_HUMIDITY_SENSOR_TEMPERATURE_MAXIMUM  85.0   // The maximum temperature rating is + 85 C
+#define RAT_HUMIDITY_SENSOR_TEMPERATURE_MINIMUM -40.0
+#define RAT_HUMIDITY_SENSOR_TEMPERATURE_MAXIMUM  85.0
 
 #define RAT_HUMIDITY_SENSOR_HUMIDITY_MINIMUM   0.0
 #define RAT_HUMIDITY_SENSOR_HUMIDITY_MAXIMUM 100.0
@@ -63,7 +63,7 @@
 // Generic delays
 // -----------------------------------------------------------------------------
 #define RAT_HUMIDITY_SENSOR_STABILIZATION_DELAY 1000   // 1,000 ms
-#define RAT_HUMIDITY_SENSOR_RESET_DELAY 1000           // 1,000 ms
+#define RAT_HUMIDITY_SENSOR_RESET_DELAY         1000   // 1,000 ms
 
 // -----------------------------------------------------------------------------
 // Specific delays
@@ -73,9 +73,11 @@
 // -----------------------------------------------------------------------------
 // Typedefs
 // -----------------------------------------------------------------------------
-typedef enum rat_humidity_sensor_repeatabilities {RAT_HUMIDITY_SENSOR_REPEATABILITY_HGH,
-                                                  RAT_HUMIDITY_SENSOR_REPEATABILITY_MED,
-                                                  RAT_HUMIDITY_SENSOR_REPEATABILITY_LOW} rat_humidity_sensor_repeatability;
+typedef enum rat_humidity_sensor_repeatabilities {
+  RAT_HUMIDITY_SENSOR_REPEATABILITY_HGH,
+  RAT_HUMIDITY_SENSOR_REPEATABILITY_MED,
+  RAT_HUMIDITY_SENSOR_REPEATABILITY_LOW
+} rat_humidity_sensor_repeatability;
 
 // -----------------------------------------------------------------------------
 // Pin names, types, and directions
@@ -114,5 +116,5 @@ uint8_t rat_humidity_sensor_read_serial (uint8_t * serial);
 //
 // Returns true if the checksums match; false otherwise.
 // -----------------------------------------------------------------------------
-uint8_t rat_humidity_sensor_measure (float * temperature,
-                                     float * humidity);
+bool rat_humidity_sensor_measure (float * temperature,
+                                  float * humidity);

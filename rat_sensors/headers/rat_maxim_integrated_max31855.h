@@ -38,15 +38,15 @@
 // -----------------------------------------------------------------------------
 // Typedefs
 // -----------------------------------------------------------------------------
-typedef enum rat_thermocouple_sensor_data_types {
+typedef enum rat_thermocouple_data_types {
   RAT_THERMOCOUPLE_SENSOR_THERMOCOUPLE_TEMPERATURE_DATA,
   RAT_THERMOCOUPLE_SENSOR_INTERNAL_TEMPERATURE_DATA
-} rat_thermocouple_sensor_data_type;
+} rat_thermocouple_data_type;
 
-typedef enum rat_thermocouple_sensor_selection_types {
+typedef enum rat_thermocouple_selection_types {
   RAT_THERMOCOUPLE_SENSOR_LFT,
   RAT_THERMOCOUPLE_SENSOR_RGT
-} rat_thermocouple_sensor_selection_type;
+} rat_thermocouple_selection_type;
 
 // -----------------------------------------------------------------------------
 // Pin names, types, and directions
