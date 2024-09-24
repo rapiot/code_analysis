@@ -21,10 +21,10 @@
 // -----------------------------------------------------------------------------
 // Defines
 // -----------------------------------------------------------------------------
-#define RAT_RADIO_MODULE_RESET_DELAY    1000   // 1,000 ms ... note that this is only for debugging!
+#define RAT_RADIO_MODULE_RESET_DELAY    1000   // 1,000 ms
 
-#define RAT_RADIO_MODULE_RESPONSE_DELAY    2   // Two interrupts ... max eight seconds
-#define RAT_RADIO_MODULE_JOIN_DELAY        3   // Three interrupts ... max twelve seconds
+#define RAT_RADIO_MODULE_RESPONSE_DELAY    2   // Two interrupts
+#define RAT_RADIO_MODULE_JOIN_DELAY        3   // Three interrupts
 
 #define RAT_RADIO_MODULE_UPLINK_PORT   "1"
 #define RAT_RADIO_MODULE_DOWNLINK_PORT "1"
