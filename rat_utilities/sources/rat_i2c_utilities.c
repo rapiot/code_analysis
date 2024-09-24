@@ -4,7 +4,7 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2020 - 2022 Rapiot Open Hardware Project
+// Copyright (c) 2020 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
@@ -17,6 +17,8 @@
 // Includes
 // ----------------------------------------------------------------------------------------------------
 #include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
 
 #include "../../rat_utilities/headers/rat_i2c_utilities.h"
 
@@ -29,16 +31,16 @@
 //   payload - The payload.
 //   end     - Defines if the stop bit is applied. If the stop bit is not applied, it is ignored.
 // ----------------------------------------------------------------------------------------------------
-void rat_i2c_write_stream (      uint8_t   mode,
-                                 uint8_t   address,
-                                 uint8_t   length,
-                           const uint8_t * payload,
-                                 uint8_t   end)
+void rat_i2c_write_stream (uint8_t   mode,
+                           uint8_t   address,
+                           uint8_t   length,
+                           uint8_t * payload,
+                           uint8_t   end)
 {
   // --------------------------------------------------------------------------------------------------
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
-  uint8_t n;
+  uint8_t byte_index;
 
   // --------------------------------------------------------------------------------------------------
   // Start condition
@@ -55,8 +57,8 @@ void rat_i2c_write_stream (      uint8_t   mode,
   // --------------------------------------------------------------------------------------------------
   // Write the payload
   // --------------------------------------------------------------------------------------------------
-  for (n = 0;n < length;n++) {
-    I2C1_Wr(payload[n]);
+  for (byte_index = 0;byte_index < length;byte_index++) {
+    I2C1_Wr(payload[byte_index]);
   }
 
   // --------------------------------------------------------------------------------------------------
@@ -85,7 +87,7 @@ void rat_i2c_read_stream (uint8_t   mode,
   // --------------------------------------------------------------------------------------------------
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
-  uint8_t n;
+  uint8_t byte_index;
 
   // --------------------------------------------------------------------------------------------------
   // Start condition
@@ -102,11 +104,11 @@ void rat_i2c_read_stream (uint8_t   mode,
   // --------------------------------------------------------------------------------------------------
   // Read the payload
   // --------------------------------------------------------------------------------------------------
-  for (n = 0;n < length;n++) {
-    if (n == length - 1) {
-      payload[n] = I2C1_Rd(0);
+  for (byte_index = 0;byte_index < length;byte_index++) {
+    if (byte_index == length - 1) {
+      payload[byte_index] = I2C1_Rd(0);
     } else {
-      payload[n] = I2C1_Rd(1);
+      payload[byte_index] = I2C1_Rd(1);
     }
   }
 
@@ -116,31 +118,4 @@ void rat_i2c_read_stream (uint8_t   mode,
   if (end == I2C_STOP_BIT_APPLIED) {
     I2C1_Stop();
   }
-
-  // --------------------------------------------------------------------------------------------------
-  // Debugging STARTS
-  // --------------------------------------------------------------------------------------------------
-  #ifdef TEST_MODE
-    debug_write_string("SRT");
-
-    if (mode == I2C_ADDRESS_DEFINED) {
-      debug_write_string(" ");
-      debug_write_unsigned_int_short_hex((address << 1) + 1);
-    }
-
-    for (n = 0;n < length;n++) {
-      debug_write_string(" ");
-      debug_write_unsigned_int_short_hex(payload[n]);
-    }
-
-    if (end == I2C_STOP_BIT_APPLIED) {
-      debug_write_string(" ");
-      debug_write_string("STP");
-    }
-
-    debug_write_separator();
-  #endif
-  // --------------------------------------------------------------------------------------------------
-  // Debugging ENDS
-  // --------------------------------------------------------------------------------------------------
 }

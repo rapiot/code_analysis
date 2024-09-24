@@ -12,7 +12,7 @@
 // ----------------------------------------------------------------------------------------------------
 #include <stdint.h>
 
-#include "../headers/rat_lorawan.h"
+#include "../../rat_radio_modules/headers/rat_lorawan.h"
 
 #include "../../rat_utilities/headers/rat_math_utilities.h"
 

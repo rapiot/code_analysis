@@ -35,16 +35,12 @@
 // ----------------------------------------------------------------------------------------------------
 // Constants
 // ----------------------------------------------------------------------------------------------------
-#define APP_STABILIZATION_DELAY 1000   // 1,000 ms
-
-#define APP_TIMER_CONSTANT 4  // 4 seconds
-
-#define APP_SLEEP_CYCLES 15            // 15 minutes
-
+#define APP_STABILIZATION_DELAY 1000    // 1,000 ms
+#define APP_TIMER_CONSTANT 4            // 4 seconds
+#define APP_SLEEP_CYCLES 15             // 15 minutes
 #define APP_SLEEP_CYCLES_THRESHOLD 96   // 96 * 15 = 24 * 60 = 24 hours
-
-#define APP_UPLINK_DATA_SIZE   5
-#define APP_DOWNLINK_DATA_SIZE 1
+#define APP_UPLINK_DATA_SIZE   5        // 3 bytes for temperature and 2 bytes for humidity
+#define APP_DOWNLINK_DATA_SIZE 1        // 1 byte for transmission interval
 
 // ----------------------------------------------------------------------------------------------------
 // Global variables

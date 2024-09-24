@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_radio_modules\sources\rat_lorawan.c
+Value=rat_utilities\sources\rat_i2c_utilities.c
 [USE_EEPROM]
 Value=1
 [USE_HEAP]
@@ -39,7 +39,8 @@ File3=.\rat_utilities\sources\rat_pic_utilities.c
 File4=.\rat_sensors\sources\rat_sensirion_sht4x.c
 File5=.\rat_utilities\sources\rat_math_utilities.c
 File6=.\rat_radio_modules\sources\rat_lorawan.c
-Count=7
+File7=.\rat_utilities\sources\rat_i2c_utilities.c
+Count=8
 [EEPROM]
 File0=rapiot_sensor_platform.ihex
 Count=1
@@ -92,10 +93,16 @@ IVT_BASE=00000008
 1=Sources
 2=rat_utilities
 3=sources
+8=rat_radio_modules
+9=sources
+12=rat_application
+13=sources
+15=rat_sensors
+16=sources
 19=Header Files
 20=rat_utilities
 21=headers
-Count=7
+Count=13
 [LIB_EXPANDED_NODES]
 Count=0
 [PROGRAMMER_TYPE]
