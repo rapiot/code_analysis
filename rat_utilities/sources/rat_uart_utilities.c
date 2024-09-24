@@ -4,7 +4,7 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2020 - 2022 Rapiot Open Hardware Project
+// Copyright (c) 2020 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
@@ -20,9 +20,6 @@
 
 #include "../../rat_utilities/headers/rat_math_utilities.h"
 #include "../../rat_utilities/headers/rat_uart_utilities.h"
-
-
-#define RAT_UART_BUFFER_SIZE 64
 
 // ----------------------------------------------------------------------------------------------------
 // Clear the buffer
@@ -207,7 +204,7 @@ void rat_uart_send_request (rat_uart_separator   leading_separator,
   // --------------------------------------------------------------------------------------------------
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
-  uint8_t n;
+  uint8_t character_index = 0;
 
   // --------------------------------------------------------------------------------------------------
   // Write leading separator
@@ -219,14 +216,12 @@ void rat_uart_send_request (rat_uart_separator   leading_separator,
   // --------------------------------------------------------------------------------------------------
   // Send request
   // --------------------------------------------------------------------------------------------------
-  n = 0;
-  
-  while (request[n] != '\0') {
-    UART1_Write(request[n]);
+  while (request[character_index] != '\0') {
+    UART1_Write(request[character_index]);
     
-    n++;
+    character_index++;
     
-    if (n == RAT_UART_BUFFER_SIZE - 1) {
+    if (character_index == RAT_UART_BUFFER_SIZE - 1) {
       break;
     }
   }
