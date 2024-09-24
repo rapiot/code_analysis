@@ -24,7 +24,7 @@
 // -----------------------------------------------------------------------------
 // Global variables
 // -----------------------------------------------------------------------------
-uint32_t g_interrupt_counter;
+uint32_t g_interrupt_counter = 0;
 
 // -----------------------------------------------------------------------------
 // Conversions
@@ -38,7 +38,7 @@ uint32_t g_interrupt_counter;
 // -----------------------------------------------------------------------------
 char rat_hex_to_char (uint8_t value)
 {
-  char result;
+  char result = '\0';
 
   if (value < 10) {
     result = value + 0x30;
@@ -57,7 +57,7 @@ char rat_hex_to_char (uint8_t value)
 // -----------------------------------------------------------------------------
 uint8_t rat_char_to_hex (char value)
 {
-  uint8_t result;
+  uint8_t result = 0x00;
 
   if (isdigit(value)) {
     result = value - 0x30;
@@ -81,11 +81,17 @@ void rat_hex_array_to_char_array (uint8_t * hex_array,
                                   char    * char_array,
                                   uint8_t   char_array_index)
 {
-  uint8_t n;
+  char msb_character = '\0';
+  char lsb_character = '\0';
+  
+  uint8_t hex_index = 0;
 
-  for (n = 0;n < hex_array_length;n++) {
-    char_array[char_array_index + 2 * n]     = rat_hex_to_char(hex_array[n] >> 4);
-    char_array[char_array_index + 2 * n + 1] = rat_hex_to_char(hex_array[n] % 16);
+  for (hex_index = 0;hex_index < hex_array_length;hex_index++) {
+    msb_character = rat_hex_to_char(hex_array[hex_index]) >> 4;
+    lsb_character = rat_hex_to_char(hex_array[hex_index]) % 16;
+    
+    char_array[char_array_index + 2 * hex_index]     = msb_character;
+    char_array[char_array_index + 2 * hex_index + 1] = lsb_character;
   }
 }
 
@@ -102,11 +108,22 @@ void rat_char_array_to_hex_array (char    * char_array,
                                   uint8_t   char_array_length,
                                   uint8_t * hex_array)
 {
-  uint8_t n;
+  uint8_t char_index = 0;
+  
+  uint8_t msb_index = 0;
+  uint8_t lsb_index = 0;
+  
+  uint8_t msb_hex = 0;
+  uint8_t lsb_hex = 0;
 
-  for (n = 0;n < char_array_length / 2;n++) {
-    hex_array[n] = ( rat_char_to_hex(char_array[char_array_index + 2 * n]) << 4 ) +
-                     rat_char_to_hex(char_array[char_array_index + 2 * n + 1]);
+  for (char_index = 0;char_index < char_array_length / 2;char_index++) {
+    msb_index = char_array_index + 2 * char_index;
+    lsb_index = char_array_index + 2 * char_index + 1;
+    
+    msb_hex = rat_char_to_hex(char_array[msb_index]) << 4;
+    lsb_hex = rat_char_to_hex(char_array[lsb_index]);
+    
+    hex_array[n] = msb_hex + lsb_hex;
   }
 }
 
@@ -116,7 +133,7 @@ void rat_char_array_to_hex_array (char    * char_array,
 void rat_clear_string (char     * char_array,
                        uint16_t   length)
 {
-  uint16_t counter;
+  uint16_t counter = 0;
 
   for (counter = 0;counter < length;counter++) {
     char_array[counter] = '\0';
@@ -128,7 +145,7 @@ void rat_clear_string (char     * char_array,
 // -----------------------------------------------------------------------------
 uint8_t rat_twos_complement_short (uint8_t value)
 {
-  uint8_t result;
+  uint8_t result = 0x00;
 
   uint8_t mask = 0xFF;
 
@@ -144,7 +161,7 @@ uint8_t rat_twos_complement_short (uint8_t value)
 // -----------------------------------------------------------------------------
 uint16_t rat_twos_complement (uint16_t value)
 {
-  uint16_t result;
+  uint16_t result = 0x0000;
 
   uint16_t mask = 0xFFFF;
 
@@ -160,7 +177,7 @@ uint16_t rat_twos_complement (uint16_t value)
 // -----------------------------------------------------------------------------
 uint32_t rat_twos_complement_long (uint32_t value)
 {
-  uint32_t result;
+  uint32_t result = 0x00000000;
 
   uint32_t mask = 0xFFFFFFFF;
 
@@ -177,13 +194,13 @@ uint32_t rat_twos_complement_long (uint32_t value)
 uint8_t rat_convert_twos_complement_short (float   value,
                                            uint8_t decimals)
 {
-  uint8_t mask = 0xFF;
-  uint8_t result;
+  uint8_t mask   = 0xFF;
+  uint8_t result = 0x00;
 
   if (value < 0) {
-    result = - value * pow(10,decimals);
+    result = - value * pow(10, decimals);
   } else {
-    result =   value * pow(10,decimals);
+    result =   value * pow(10, decimals);
   }
 
   if (value < 0) {
@@ -201,8 +218,8 @@ uint8_t rat_convert_twos_complement_short (float   value,
 uint16_t rat_convert_twos_complement (float   value,
                                       uint8_t decimals)
 {
-  uint16_t mask = 0xFFFF;
-  uint16_t result;
+  uint16_t mask   = 0xFFFF;
+  uint16_t result = 0x0000;
 
   if (value < 0) {
     result = - value * pow(10,decimals);
@@ -225,13 +242,13 @@ uint16_t rat_convert_twos_complement (float   value,
 uint32_t rat_convert_twos_complement_long (float   value,
                                            uint8_t decimals)
 {
-  uint32_t mask = 0xFFFFFFFF;
-  uint32_t result;
+  uint32_t mask   = 0xFFFFFFFF;
+  uint32_t result = 0x00000000;
 
   if (value < 0) {
-    result = - value * pow(10,decimals);
+    result = - value * pow(10, decimals);
   } else {
-    result =   value * pow(10,decimals);
+    result =   value * pow(10, decimals);
   }
 
   if (value < 0) {
@@ -253,13 +270,13 @@ uint8_t rat_calculate_crc (uint16_t value,
   // ---------------------------------------------------------------------------
   // Auxiliary variables
   // ---------------------------------------------------------------------------
-  uint8_t counter_byte;
-  uint8_t counter_bit;
+  uint8_t counter_byte = 0x00;
+  uint8_t counter_bit  = 0x00;
 
   // ---------------------------------------------------------------------------
   // Checksum
   // ---------------------------------------------------------------------------
-  uint8_t checksum;
+  uint8_t checksum = 0x00;
 
   // ---------------------------------------------------------------------------
   // Data
@@ -301,9 +318,9 @@ uint8_t rat_calculate_crc (uint16_t value,
 bool rat_string_compare (char * a,
                          char * b)
 {
-  uint8_t length_a;
-  uint8_t length_b;
-  uint8_t n;
+  uint8_t length_a = 0;
+  uint8_t length_b = 0;
+  uint8_t index    = 0;
   
   bool result = true;
   
@@ -313,8 +330,8 @@ bool rat_string_compare (char * a,
   if (length_a < length_b) {
     result = false;
   } else {
-    for (n = 0;n < length_b;n++) {
-      if (a[n] != b[n]) {
+    for (index = 0;index < length_b;index++) {
+      if (a[index] != b[index]) {
         result = false;
       
         break;
@@ -331,9 +348,9 @@ bool rat_string_compare (char * a,
 bool rat_string_compare_reverse (char * a,
                                  char * b)
 {
-  uint8_t length_a;
-  uint8_t length_b;
-  uint8_t n;
+  uint8_t length_a = 0;
+  uint8_t length_b = 0;
+  uint8_t index    = 0;
 
   bool result = true;
 
@@ -343,8 +360,8 @@ bool rat_string_compare_reverse (char * a,
   if (length_a < length_b) {
     result = false;
   } else {
-    for (n = 0;n < length_b;n++) {
-      if (a[length_a - 1 - n] != b[length_b - 1 - n]) {
+    for (index = 0;index < length_b;index++) {
+      if (a[length_a - 1 - index] != b[length_b - 1 - index]) {
         result = false;
 
         break;
@@ -364,18 +381,18 @@ bool rat_string_find_char (char    * a,
 {
   bool result = false;
   
-  uint8_t n = 0;
+  uint8_t index = 0;
   
-  while (a[n] != '\0') {
-    if (a[n] == b) {
-      *location = n;
+  while (a[index] != '\0') {
+    if (a[index] == b) {
+      *location = index;
       
       result = true;
       
       break;
     }
 
-    n++;
+    index++;
   }
   
   return result;
@@ -387,7 +404,7 @@ bool rat_string_find_char (char    * a,
 bool rat_string_find (char * a,
                       char * b)
 {
-  if (strstr(a,b) == NULL) {
+  if (strstr(a, b) == NULL) {
     return false;
   } else {
     return true;
@@ -403,10 +420,10 @@ void rat_string_sub (char * a,
                      uint8_t index,
                      uint8_t length)
 {
-  uint8_t n;
+  uint8_t counter;
   
-  for (n = index;n < index + length;n++) {
-    b[n - index] = a[n];
+  for (counter = index;counter < index + length;counter++) {
+    b[counter - index] = a[counter];
   }
 }
 
@@ -427,9 +444,9 @@ void rat_wait_interrupt (void)
 // -----------------------------------------------------------------------------
 void rat_wait_interrupts (uint8_t interrupts)
 {
-  uint8_t n;
+  uint8_t counter;
   
-  for (n = 0;n < interrupts;n++) {
+  for (counter = 0;counter < interrupts;counter++) {
     rat_wait_interrupt();
   }
 }

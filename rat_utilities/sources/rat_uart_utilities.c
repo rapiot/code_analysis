@@ -62,7 +62,7 @@ static void rat_uart_write_separator (rat_uart_separator separator)
 // -----------------------------------------------------------------------------
 static void rat_uart_read_char (char character)
 {
-  char temp;
+  char temp = '\0';
   
   while (true) {
     while (!UART1_Data_Ready()) {
