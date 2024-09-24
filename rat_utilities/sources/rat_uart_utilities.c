@@ -237,18 +237,58 @@ void rat_uart_send_request (rat_uart_separator   leading_separator,
 }
 
 // ----------------------------------------------------------------------------------------------------
-// Receive value (if applicable) and response code
+// Receive response without a value
 // ----------------------------------------------------------------------------------------------------
 void rat_uart_receive_response (rat_uart_separator   leading_separator,
                                 rat_uart_separator   trailing_separator,
-                                char               * response,
-                                bool                 value)
+                                char               * response)
 {
   // --------------------------------------------------------------------------------------------------
   // Auxiliary variables
   // --------------------------------------------------------------------------------------------------
-  uint8_t n = 0;
+  uint8_t character_index     = 0;
+  uint8_t trailing_separators = 0;
   
+  // --------------------------------------------------------------------------------------------------
+  // Leading separator
+  // --------------------------------------------------------------------------------------------------
+  if (leading_separator != RAT_UART_NONE) {
+    rat_uart_read_separator(leading_separator);
+  }
+
+  // --------------------------------------------------------------------------------------------------
+  // Read response code
+  // --------------------------------------------------------------------------------------------------
+  while (character_index < RAT_UART_BUFFER_SIZE && trailing_separators < 1) {
+    while (!UART1_Data_Ready()) {
+      // Wait for a new character
+    }
+
+    response[character_index] = UART1_Read();
+    
+    if (rat_check_separator(trailing_separator, response, character_index)) {
+      rat_remove_separator(trailing_separator, response, &character_index);
+      
+      trailing_separators++;
+    }
+    
+    character_index++;
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Receive response with a value
+// ----------------------------------------------------------------------------------------------------
+void rat_uart_receive_response_with_value (rat_uart_separator   leading_separator,
+                                           rat_uart_separator   trailing_separator,
+                                           char               * response)
+{
+  // --------------------------------------------------------------------------------------------------
+  // Auxiliary variables
+  // --------------------------------------------------------------------------------------------------
+  uint8_t character_index     = 0;
+  uint8_t trailing_separators = 0;
+
   bool value_flag = false;
 
   // --------------------------------------------------------------------------------------------------
@@ -259,29 +299,21 @@ void rat_uart_receive_response (rat_uart_separator   leading_separator,
   }
 
   // --------------------------------------------------------------------------------------------------
-  // Read value (if applicable) and response code
+  // Read value and response code
   // --------------------------------------------------------------------------------------------------
-  while (n < RAT_UART_BUFFER_SIZE) {
+  while (character_index < RAT_UART_BUFFER_SIZE && trailing_separators < 2) {
     while (!UART1_Data_Ready()) {
       // Wait for a new character
     }
 
-    response[n] = UART1_Read();
-    
-    if (rat_check_separator(trailing_separator,response,n)) {
-      rat_remove_separator(trailing_separator,response,&n);
-    
-      if (value) {
-        if (value_flag) {
-          break;
-        } else {
-          value_flag = true;
-        }
-      } else {
-        break;
-      }
+    response[character_index] = UART1_Read();
+
+    if (rat_check_separator(trailing_separator, response, character_index)) {
+      rat_remove_separator(trailing_separator, response, &character_index);
+
+      trailing_separators++;
     }
-    
-    n++;
+
+    character_index++;
   }
 }

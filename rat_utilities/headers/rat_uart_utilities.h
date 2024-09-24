@@ -47,9 +47,15 @@ void rat_uart_send_request (rat_uart_separator   leading_separator,
                             char               * request);
 
 // ----------------------------------------------------------------------------------------------------
-// Receive value (if applicable) and response code
+// Receive response without a value
 // ----------------------------------------------------------------------------------------------------
 void rat_uart_receive_response (rat_uart_separator   leading_separator,
                                 rat_uart_separator   trailing_separator,
-                                char               * response,
-                                bool                 value);
+                                char               * response);
+
+// ----------------------------------------------------------------------------------------------------
+// Receive response with a value
+// ----------------------------------------------------------------------------------------------------
+void rat_uart_receive_response_with_value (rat_uart_separator   leading_separator,
+                                           rat_uart_separator   trailing_separator,
+                                           char               * response);
