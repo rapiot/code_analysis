@@ -52,12 +52,12 @@ bool app_wakeup (void)
 {
   // ---------------------------------------------------------------------------
   // Note that one sleep cycle is one minute,
-  // but the value of the interrupt counter depends on the timer constant
-  //
-  // By default, the timer constant is four seconds
+  // but the value of the interrupt counter depends on the timer constant.
+  // By default, the timer constant is four seconds.
   // ---------------------------------------------------------------------------
-  if (rat_interrupt_counter() %
-      ( APP_SLEEP_CYCLES * ( 60 / APP_TIMER_CONSTANT ) ) == 0) {
+  uint32_t sleep_cycles = APP_SLEEP_CYCLES * ( 60 / APP_TIMER_CONSTANT );
+  
+  if (rat_interrupt_counter() % sleep_cycles == 0) {
     return true;
   } else {
     return false;
@@ -69,12 +69,8 @@ bool app_wakeup (void)
 // -----------------------------------------------------------------------------
 void app_sleep (void)
 {
-  while (true) {
+  while (!app_wakeup()) {
     rat_sleep();
-
-    if (app_wakeup()) {
-      break;
-    }
   }
 }
 
