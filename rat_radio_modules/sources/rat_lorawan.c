@@ -4,16 +4,17 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2020 - 2022 Rapiot Open Hardware Project
+// Copyright (c) 2020 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
 // Includes
 // ----------------------------------------------------------------------------------------------------
+#include <stdlib.h>
 #include <stdint.h>
-
+#include <stdbool.h>
+   
 #include "../../rat_radio_modules/headers/rat_lorawan.h"
-
 #include "../../rat_utilities/headers/rat_math_utilities.h"
 
 // ----------------------------------------------------------------------------------------------------

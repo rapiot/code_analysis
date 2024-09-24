@@ -4,21 +4,7 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2021 - 2023 Rapiot Open Hardware Project
-//
-// Known limitations :
-//
-//   Only EU 868 MHz is supported.
-//
-//   Only RAK3172H (EU868) has been tested.
-//
-//   Only activation-by-personalization (APB) is supported.
-//
-//   Confirmed messages are not supported.
-//
-// Known issues :
-//
-//   There are no known issues.
+// Copyright (c) 2021 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------

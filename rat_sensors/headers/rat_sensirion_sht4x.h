@@ -4,33 +4,11 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2021 - 2023 Rapiot Open Hardware Project
-//
-// Known limitations :
-//
-//   There are no known limitations.
-//
-// Known issues :
-//
-//   There are no known issues.
-//
-// Test instructions :
-//
-//   Use mikroBus socket 1 with EasyPIC v8.
+// Copyright (c) 2021 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
 // Sensirion SHT4X Header File
-//
-// The following versions are supported :
-//
-//   - Sensirion SHT40
-//   - Sensirion SHT41
-//   - Sensirion SHT45
-// ----------------------------------------------------------------------------------------------------
-
-// ----------------------------------------------------------------------------------------------------
-// Includes
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------

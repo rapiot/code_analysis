@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_utilities\sources\rat_pic_utilities.c
+Value=rat_sensors\sources\rat_sensirion_sht4x.c
 [USE_EEPROM]
 Value=1
 [USE_HEAP]
@@ -46,7 +46,10 @@ File10=.\rat_utilities\headers\rat_pic_utilities.h
 File11=.\rat_utilities\headers\rat_math_utilities.h
 File12=.\rat_sensors\sources\rat_maxim_integrated_max31855.c
 File13=.\rat_sensors\headers\rat_maxim_integrated_max31855.h
-Count=14
+File14=.\rat_radio_modules\headers\rat_lorawan.h
+File15=.\rat_radio_modules\headers\rat_rakwireless_rakx.h
+File16=.\rat_sensors\headers\rat_sensirion_sht4x.h
+Count=17
 [EEPROM]
 File0=rapiot_sensor_platform.ihex
 Count=1
@@ -107,9 +110,11 @@ IVT_BASE=00000008
 19=Header Files
 20=rat_utilities
 21=headers
+26=rat_radio_modules
+27=headers
 30=rat_sensors
 31=headers
-Count=15
+Count=17
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries

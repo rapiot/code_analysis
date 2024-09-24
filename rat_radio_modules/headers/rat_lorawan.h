@@ -4,7 +4,7 @@
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
-// Copyright (c) 2020 - 2022 Rapiot Open Hardware Project
+// Copyright (c) 2020 - 2024 Rapiot Open Hardware Project
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
