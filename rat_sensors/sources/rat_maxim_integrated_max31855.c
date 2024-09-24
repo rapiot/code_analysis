@@ -72,15 +72,13 @@ static void rat_thermocouple_sensor_reset (void)
 // -----------------------------------------------------------------------------
 // Enable
 // -----------------------------------------------------------------------------
-static void rat_thermocouple_sensor_enable (rat_thermocouple_selection_type selection)
+static void rat_thermocouple_sensor_enable (void)
 {
-  if (selection == RAT_THERMOCOUPLE_SENSOR_LFT) {
-    RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b1;
-    RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b1;
-  } else {
-    RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b1;
-    RAT_THERMOCOUPLE_SENSOR_RGT_CSL_PIN = 0b1;
-  }
+  RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b1;
+  RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b1;
+  
+  RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b1;
+  RAT_THERMOCOUPLE_SENSOR_RGT_CSL_PIN = 0b1;
 
   rat_delay(RAT_THERMOCOUPLE_SENSOR_STABILIZATION_DELAY);
 }
@@ -88,15 +86,13 @@ static void rat_thermocouple_sensor_enable (rat_thermocouple_selection_type sele
 // -----------------------------------------------------------------------------
 // Disable
 // -----------------------------------------------------------------------------
-static void rat_thermocouple_sensor_disable (rat_thermocouple_selection_type selection)
+static void rat_thermocouple_sensor_disable (void)
 {
-  if (selection == RAT_THERMOCOUPLE_SENSOR_LFT) {
-    RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b0;
-    RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b0;
-  } else {
-    RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b0;
-    RAT_THERMOCOUPLE_SENSOR_RGT_CSL_PIN = 0b0;
-  }
+  RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b0;
+
+  RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_RGT_CSL_PIN = 0b0;
 }
 
 // -----------------------------------------------------------------------------
@@ -121,8 +117,8 @@ static float rat_convert_temperature (uint32_t temperature,
 
   // ---------------------------------------------------------------------------
   // Determine the start index and the length of the value
-  // --------------------------------------------------------------------------------------------------
-  if (data_type == RAT_THERMOCOUPLE_SENSOR_THERMOCOUPLE_TEMPERATURE_DATA) {
+  // ---------------------------------------------------------------------------
+  if (data_type == RAT_THERMOCOUPLE_TEMPERATURE_DATA) {
     index = -2;
     length = 13;
   } else {
@@ -179,8 +175,7 @@ static float rat_convert_temperature (uint32_t temperature,
 void rat_thermocouple_sensor_init (void)
 {
   rat_thermocouple_sensor_set_pins();
-  rat_thermocouple_sensor_enable(RAT_THERMOCOUPLE_SENSOR_LFT);
-  rat_thermocouple_sensor_enable(RAT_THERMOCOUPLE_SENSOR_RGT);
+  rat_thermocouple_sensor_enable();
   rat_thermocouple_sensor_reset();
 }
 
@@ -204,12 +199,14 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
   uint8_t response [4] = {0x00,0x00,0x00,0x00};
 
   uint32_t raw_thermocouple_temperature_data = 0x00000000;
-  uint32_t raw_internal_temperature_data      = 0x00000000;
+  uint32_t raw_internal_temperature_data     = 0x00000000;
+  
+  float temperature = 0.0;
 
   // ---------------------------------------------------------------------------
   // Enable the sensor
   // ---------------------------------------------------------------------------
-  rat_thermocouple_sensor_enable(RAT_THERMOCOUPLE_SENSOR_LFT);
+  rat_thermocouple_sensor_enable();
   
   // ---------------------------------------------------------------------------
   // Read the raw data
@@ -227,7 +224,7 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
   // ---------------------------------------------------------------------------
   // Disable the sensor
   // ---------------------------------------------------------------------------
-  rat_thermocouple_sensor_disable(RAT_THERMOCOUPLE_SENSOR_LFT);
+  rat_thermocouple_sensor_disable();
 
   // ---------------------------------------------------------------------------
   // Parse the raw data
@@ -274,8 +271,13 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
   // ---------------------------------------------------------------------------
   // Convert
   // ---------------------------------------------------------------------------
-  *thermocouple_temperature = rat_convert_temperature(raw_thermocouple_temperature_data,
-                                                      RAT_THERMOCOUPLE_SENSOR_THERMOCOUPLE_TEMPERATURE_DATA);
-  *internal_temperature     = rat_convert_temperature(raw_internal_temperature_data,
-                                                      RAT_THERMOCOUPLE_SENSOR_INTERNAL_TEMPERATURE_DATA);
+  temperature = rat_convert_temperature(raw_thermocouple_temperature_data,
+                                        RAT_THERMOCOUPLE_TEMPERATURE_DATA);
+                                                      
+  *thermocouple_temperature = temperature;
+  
+  temperature = rat_convert_temperature(raw_internal_temperature_data,
+                                        RAT_INTERNAL_TEMPERATURE_DATA);
+                                        
+  *internal_temperature = temperature;
 }
