@@ -32,11 +32,11 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../../rat_utilities/headers/rat_utilities.h"
+#include "../../rat_utilities/headers/rat_math_utilities.h"
 #include "../../rat_utilities/headers/rat_pic_utilities.h"
 #include "../../rat_utilities/headers/rat_i2c_utilities.h"
 
-#include "../headers/rat_sensirion_sht4x.h"
+#include "../../rat_sensors/headers/rat_sensirion_sht4x.h"
 
 // ----------------------------------------------------------------------------------------------------
 // Static functions

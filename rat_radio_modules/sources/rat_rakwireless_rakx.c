@@ -37,11 +37,11 @@
 // ----------------------------------------------------------------------------------------------------
 #include "../headers/rat_lorawan.h"
 
-#include "../../rat_utilities/headers/rat_utilities.h"
+#include "../../rat_utilities/headers/rat_math_utilities.h"
 #include "../../rat_utilities/headers/rat_pic_utilities.h"
 #include "../../rat_utilities/headers/rat_uart_utilities.h"
 
-#include "../headers/rat_rakwireless_rakx.h"
+#include "../../rat_radio_modules/headers/rat_rakwireless_rakx.h"
 
 #define RAT_UART_BUFFER_SIZE 64
 

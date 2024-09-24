@@ -18,8 +18,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../../rat_utilities/headers/rat_utilities.h"
-#include "../../rat_utilities/headers/rat_utilities.h"
+#include "../../rat_utilities/headers/rat_math_utilities.h"
 #include "../../rat_utilities/headers/rat_uart_utilities.h"
 
 

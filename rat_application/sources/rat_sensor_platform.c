@@ -26,7 +26,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../../rat_utilities/headers/rat_utilities.h"                 // Conversions and other math related utilities
+#include "../../rat_utilities/headers/rat_math_utilities.h"                 // Conversions and other math related utilities
 #include "../../rat_utilities/headers/rat_pic_utilities.h"             // Delays, sleep, and watchdog utilities
 #include "../../rat_sensors/headers/rat_sensirion_sht4x.h"             // Temperature and humidity sensor, I2C
 #include "../../rat_radio_modules/headers/rat_lorawan.h"               // LoRaWAN definitions

@@ -19,7 +19,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "../../rat_utilities/headers/rat_utilities.h"
+#include "../../rat_utilities/headers/rat_math_utilities.h"
 
 // ----------------------------------------------------------------------------------------------------
 // Global variables
