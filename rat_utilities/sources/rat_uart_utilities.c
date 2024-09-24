@@ -173,19 +173,23 @@ static void rat_remove_separator (rat_uart_separator   separator,
   // "\r\n"
   // --------------------------------------------------------------------------------------------------
   if (separator == RAT_UART_CARRIER_RETURN_AND_NEW_LINE) {
-    stream[new_index]     = '\0';
-    stream[new_index - 1] = '\0';
+    if (new_index > 1) {
+      stream[new_index]     = '\0';
+      stream[new_index - 1] = '\0';
     
-    new_index = new_index - 2;
-
+      new_index = new_index - 2;
+    }
+    
   // --------------------------------------------------------------------------------------------------
   // '\r' or '\n'
   // --------------------------------------------------------------------------------------------------
   } else if (separator == RAT_UART_CARRIER_RETURN ||
              separator == RAT_UART_NEW_LINE) {
-    stream[new_index] = '\0';
+    if (new_index > 0) {
+      stream[new_index] = '\0';
     
-    new_index = new_index - 1;
+      new_index = new_index - 1;
+    }
   }
   
   // --------------------------------------------------------------------------------------------------
@@ -288,8 +292,6 @@ void rat_uart_receive_response_with_value (rat_uart_separator   leading_separato
   // --------------------------------------------------------------------------------------------------
   uint8_t character_index     = 0;
   uint8_t trailing_separators = 0;
-
-  bool value_flag = false;
 
   // --------------------------------------------------------------------------------------------------
   // Leading separator

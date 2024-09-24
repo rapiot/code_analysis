@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_utilities\headers\rat_uart_utilities.h
+Value=rat_utilities\sources\rat_uart_utilities.c
 [USE_EEPROM]
 Value=1
 [USE_HEAP]
