@@ -33,20 +33,26 @@
 static void rat_thermocouple_sensor_set_pins (void)
 {
   // --------------------------------------------------------------------------------------------------
-  // Power
+  // Power pins
   // --------------------------------------------------------------------------------------------------
-  RAT_THERMOCOUPLE_SENSOR_PWR_DIR = 0b0;
-  RAT_THERMOCOUPLE_SENSOR_PWR_TYP = 0b0;
-
-  RAT_THERMOCOUPLE_SENSOR_PWR_PIN = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_PWR_DIR = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_PWR_TYP = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b0;
+  
+  RAT_THERMOCOUPLE_SENSOR_RGT_PWR_DIR = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_RGT_PWR_TYP = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b0;
   
   // --------------------------------------------------------------------------------------------------
-  // Power
+  // Chip select pins
   // --------------------------------------------------------------------------------------------------
-  RAT_THERMOCOUPLE_SENSOR_CSL_DIR = 0b0;
-  RAT_THERMOCOUPLE_SENSOR_CSL_TYP = 0b0;
-
-  RAT_THERMOCOUPLE_SENSOR_CSL_PIN = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_CSL_DIR = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_CSL_TYP = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b0;
+  
+  RAT_THERMOCOUPLE_SENSOR_RGT_CSL_DIR = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_RGT_CSL_TYP = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_RGT_CSL_PIN = 0b0;
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -54,20 +60,27 @@ static void rat_thermocouple_sensor_set_pins (void)
 // ----------------------------------------------------------------------------------------------------
 static void rat_thermocouple_sensor_reset (void)
 {
-  RAT_THERMOCOUPLE_SENSOR_PWR_PIN = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b0;
 
   rat_delay(RAT_THERMOCOUPLE_SENSOR_RESET_DELAY);
 
-  RAT_THERMOCOUPLE_SENSOR_PWR_PIN = 0b1;
+  RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b1;
+  RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b1;
 }
 
 // ----------------------------------------------------------------------------------------------------
 // Enable
 // ----------------------------------------------------------------------------------------------------
-static void rat_thermocouple_sensor_enable (void)
+static void rat_thermocouple_sensor_enable (rat_thermocouple_sensor_selection_type selection)
 {
-  RAT_THERMOCOUPLE_SENSOR_PWR_PIN = 0b1;
-  RAT_THERMOCOUPLE_SENSOR_CSL_PIN = 0b1;
+  if (selection == RAT_THERMOCOUPLE_SENSOR_LFT) {
+    RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b1;
+    RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b1;
+  } else {
+    RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b1;
+    RAT_THERMOCOUPLE_SENSOR_RGT_CSL_PIN = 0b1;
+  }
 
   rat_delay(RAT_THERMOCOUPLE_SENSOR_STABILIZATION_DELAY);
 }
@@ -75,10 +88,15 @@ static void rat_thermocouple_sensor_enable (void)
 // ----------------------------------------------------------------------------------------------------
 // Disable
 // ----------------------------------------------------------------------------------------------------
-static void rat_thermocouple_sensor_disable (void)
+static void rat_thermocouple_sensor_disable (rat_thermocouple_sensor_selection_type selection)
 {
-  RAT_THERMOCOUPLE_SENSOR_PWR_PIN = 0b0;
-  RAT_THERMOCOUPLE_SENSOR_CSL_PIN = 0b0;
+  if (selection == RAT_THERMOCOUPLE_SENSOR_LFT) {
+    RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN = 0b0;
+    RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b0;
+  } else {
+    RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b0;
+    RAT_THERMOCOUPLE_SENSOR_RGT_CSL_PIN = 0b0;
+  }
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -161,7 +179,8 @@ static float rat_thermocouple_sensor_convert_temperature (uint32_t temperature,
 void rat_thermocouple_sensor_init (void)
 {
   rat_thermocouple_sensor_set_pins();
-  rat_thermocouple_sensor_enable();
+  rat_thermocouple_sensor_enable(RAT_THERMOCOUPLE_SENSOR_LFT);
+  rat_thermocouple_sensor_enable(RAT_THERMOCOUPLE_SENSOR_RGT);
   rat_thermocouple_sensor_reset();
 }
 
@@ -195,12 +214,12 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
   // --------------------------------------------------------------------------------------------------
   // Enable the sensor
   // --------------------------------------------------------------------------------------------------
-  rat_thermocouple_sensor_enable();
+  rat_thermocouple_sensor_enable(RAT_THERMOCOUPLE_SENSOR_LFT);
   
   // --------------------------------------------------------------------------------------------------
   // Read the raw data
   // --------------------------------------------------------------------------------------------------
-  RAT_THERMOCOUPLE_SENSOR_CSL_PIN = 0b0;
+  RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b0;
    
   rat_delay(RAT_THERMOCOUPLE_SENSOR_CHIP_SELECT_DELAY);
   
@@ -213,7 +232,7 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
   // --------------------------------------------------------------------------------------------------
   // Disable the sensor
   // --------------------------------------------------------------------------------------------------
-  rat_thermocouple_sensor_disable();
+  rat_thermocouple_sensor_disable(RAT_THERMOCOUPLE_SENSOR_LFT);
 
   // --------------------------------------------------------------------------------------------------
   // Parse the raw data

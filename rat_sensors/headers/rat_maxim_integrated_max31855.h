@@ -43,23 +43,36 @@ typedef enum rat_thermocouple_sensor_data_types {
   RAT_THERMOCOUPLE_SENSOR_INTERNAL_TEMPERATURE_DATA
 } rat_thermocouple_sensor_data_type;
 
+typedef enum rat_thermocouple_sensor_selection_types {
+  RAT_THERMOCOUPLE_SENSOR_LFT,
+  RAT_THERMOCOUPLE_SENSOR_RGT
+} rat_thermocouple_sensor_selection_type;
+
 // ----------------------------------------------------------------------------------------------------
 // Pin names, types, and directions
 // ----------------------------------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------
-// Power
+// Power pins
 // ----------------------------------------------------------------------------------------------------
-sbit RAT_THERMOCOUPLE_SENSOR_PWR_PIN at LATC.B2;
-sbit RAT_THERMOCOUPLE_SENSOR_PWR_DIR at TRISC.B2;
-sbit RAT_THERMOCOUPLE_SENSOR_PWR_TYP at ANSELC.B2;
+sbit RAT_THERMOCOUPLE_SENSOR_LFT_PWR_PIN at LATC.B2;
+sbit RAT_THERMOCOUPLE_SENSOR_LFT_PWR_DIR at TRISC.B2;
+sbit RAT_THERMOCOUPLE_SENSOR_LFT_PWR_TYP at ANSELC.B2;
+
+sbit RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN at LATC.B3;
+sbit RAT_THERMOCOUPLE_SENSOR_RGT_PWR_DIR at TRISC.B3;
+sbit RAT_THERMOCOUPLE_SENSOR_RGT_PWR_TYP at ANSELC.B3;
 
 // ----------------------------------------------------------------------------------------------------
-// Chip select
+// Chip select pins
 // ----------------------------------------------------------------------------------------------------
-sbit RAT_THERMOCOUPLE_SENSOR_CSL_PIN at LATA.B5;
-sbit RAT_THERMOCOUPLE_SENSOR_CSL_DIR at TRISA.B5;
-sbit RAT_THERMOCOUPLE_SENSOR_CSL_TYP at ANSELA.B5;
+sbit RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN at LATA.B5;
+sbit RAT_THERMOCOUPLE_SENSOR_LFT_CSL_DIR at TRISA.B5;
+sbit RAT_THERMOCOUPLE_SENSOR_LFT_CSL_TYP at ANSELA.B5;
+
+sbit RAT_THERMOCOUPLE_SENSOR_RGT_CSL_PIN at LATA.B6;
+sbit RAT_THERMOCOUPLE_SENSOR_RGT_CSL_DIR at TRISA.B6;
+sbit RAT_THERMOCOUPLE_SENSOR_RGT_CSL_TYP at ANSELA.B6;
 
 // ----------------------------------------------------------------------------------------------------
 // Functions

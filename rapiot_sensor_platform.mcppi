@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_sensors\sources\rat_sensirion_sht4x.c
+Value=rat_sensors\sources\rat_maxim_integrated_max31855.c
 [USE_EEPROM]
 Value=1
 [USE_HEAP]
@@ -40,16 +40,11 @@ File4=.\rat_sensors\sources\rat_sensirion_sht4x.c
 File5=.\rat_utilities\sources\rat_math_utilities.c
 File6=.\rat_radio_modules\sources\rat_lorawan.c
 File7=.\rat_utilities\sources\rat_i2c_utilities.c
-File8=.\rat_utilities\headers\rat_uart_utilities.h
-File9=.\rat_utilities\headers\rat_i2c_utilities.h
-File10=.\rat_utilities\headers\rat_pic_utilities.h
-File11=.\rat_utilities\headers\rat_math_utilities.h
-File12=.\rat_sensors\sources\rat_maxim_integrated_max31855.c
-File13=.\rat_sensors\headers\rat_maxim_integrated_max31855.h
-File14=.\rat_radio_modules\headers\rat_lorawan.h
-File15=.\rat_radio_modules\headers\rat_rakwireless_rakx.h
-File16=.\rat_sensors\headers\rat_sensirion_sht4x.h
-Count=17
+File8=.\rat_sensors\sources\rat_maxim_integrated_max31855.c
+File9=.\rat_radio_modules\headers\rat_lorawan.h
+File10=.\rat_radio_modules\headers\rat_rakwireless_rakx.h
+File11=.\rat_sensors\headers\rat_maxim_integrated_max31855.h
+Count=12
 [EEPROM]
 File0=rapiot_sensor_platform.ihex
 Count=1
@@ -118,7 +113,7 @@ Count=17
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries
-Count=2
+Count=3
 [PROGRAMMER_TYPE]
 Value=mikroE mikroProg
 [CODEGRIP_OPTIONS]
