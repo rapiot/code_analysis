@@ -1,15 +1,15 @@
-// ----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Except when otherwise noted, this file is licensed under
 // Creative Commons Attributions ShakeAlike 4.0 License (CC-BY-SA 4.0)
 //
 // https://creativecommons.org/licenses/by-sa/4.0/legalcode
 //
 // Copyright (c) 2020 - 2024 Rapiot Open Hardware Project
-// ----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
-// ----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Includes
-// ----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -17,14 +17,14 @@
 #include "../../rat_radio_modules/headers/rat_lorawan.h"
 #include "../../rat_utilities/headers/rat_math_utilities.h"
 
-// ----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Read the parameters of the ABP
 //
 //   - Device address,                     32 bits - Addresses 0x00 - 0x03
 //   - Device extended unique identifier,  64 bits - Addresses 0x10 - 0x17
 //   - Network session key,               128 bits - Addresses 0x20 - 0x2F
 //   - Application session key,           128 bits - Addresses 0x30 - 0x3F
-// ----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void lorawan_read_abp_parameters (char * device_address,
                                   char * device_eui,
                                   char * network_session_key,
