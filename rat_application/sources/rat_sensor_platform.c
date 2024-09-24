@@ -48,7 +48,7 @@ uint32_t gbl_sleep_cycles_counter;
 // -----------------------------------------------------------------------------
 // Wakeup
 // -----------------------------------------------------------------------------
-uint8_t app_wakeup (void)
+bool app_wakeup (void)
 {
   // ---------------------------------------------------------------------------
   // Note that one sleep cycle is one minute,
@@ -58,9 +58,9 @@ uint8_t app_wakeup (void)
   // ---------------------------------------------------------------------------
   if (rat_interrupt_counter() %
       ( APP_SLEEP_CYCLES * ( 60 / APP_TIMER_CONSTANT ) ) == 0) {
-    return 1;
+    return true;
   } else {
-    return 0;
+    return false;
   }
 }
 
