@@ -156,7 +156,7 @@ void rat_humidity_sensor_software_reset (void)
   rat_i2c_write_stream(I2C_ADDRESS_DEFINED,
                        RAT_HUMIDITY_SENSOR_ADDRESS,
                        2,
-                       (const uint8_t *)request,
+                       request,
                        I2C_STOP_BIT_APPLIED);
 }
 
@@ -189,7 +189,7 @@ uint8_t rat_humidity_sensor_read_serial (uint8_t * serial)
   rat_i2c_write_stream(I2C_ADDRESS_DEFINED,
                        RAT_HUMIDITY_SENSOR_ADDRESS,
                        1,
-                       (const uint8_t *)request,
+                       request,
                        I2C_STOP_BIT_APPLIED);
 
   // --------------------------------------------------------------------------------------------------
@@ -269,7 +269,7 @@ uint8_t rat_humidity_sensor_measure (float * temperature,
   rat_i2c_write_stream(I2C_ADDRESS_DEFINED,
                        RAT_HUMIDITY_SENSOR_ADDRESS,
                        1,
-                       (const uint8_t *)request,
+                       request,
                        I2C_STOP_BIT_APPLIED);
 
   // --------------------------------------------------------------------------------------------------
