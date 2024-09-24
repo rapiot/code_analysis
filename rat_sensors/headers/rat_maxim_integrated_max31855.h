@@ -81,9 +81,18 @@ void rat_thermocouple_sensor_init (void);
 // -----------------------------------------------------------------------------
 // Measure the temperature
 // -----------------------------------------------------------------------------
-void rat_thermocouple_sensor_measure (float   * thermocouple_temperature,
-                                      float   * internal_temperature,
-                                      uint8_t * fault_flag,
-                                      uint8_t * short_vcc_flag,
-                                      uint8_t * short_gnd_flag,
-                                      uint8_t * open_circuit_flag);
+void rat_thermocouple_sensor_measure (float   * thermocouple_temperature_lft,
+                                      float   * internal_temperature_lft,
+                                      
+                                      uint8_t * fault_flag_lft,
+                                      uint8_t * short_vcc_flag_lft,
+                                      uint8_t * short_gnd_flag_lft,
+                                      uint8_t * open_circuit_flag_lft,
+                                      
+                                      float   * thermocouple_temperature_rgt,
+                                      float   * internal_temperature_rgt,
+
+                                      uint8_t * fault_flag_rgt,
+                                      uint8_t * short_vcc_flag_rgt,
+                                      uint8_t * short_gnd_flag_rgt,
+                                      uint8_t * open_circuit_flag_rgt);
