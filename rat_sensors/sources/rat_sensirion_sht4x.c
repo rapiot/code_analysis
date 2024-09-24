@@ -33,7 +33,7 @@
 #include <stdbool.h>
 
 #include "../../rat_utilities/headers/rat_utilities.h"
-#include "../../rat_utilities/headers/rat_mcu_utilities.h"
+#include "../../rat_utilities/headers/rat_pic_utilities.h"
 #include "../../rat_utilities/headers/rat_i2c_utilities.h"
 
 #include "../headers/rat_sensirion_sht4x.h"

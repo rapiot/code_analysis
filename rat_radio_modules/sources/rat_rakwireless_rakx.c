@@ -38,7 +38,7 @@
 #include "../headers/rat_lorawan.h"
 
 #include "../../rat_utilities/headers/rat_utilities.h"
-#include "../../rat_utilities/headers/rat_mcu_utilities.h"
+#include "../../rat_utilities/headers/rat_pic_utilities.h"
 #include "../../rat_utilities/headers/rat_uart_utilities.h"
 
 #include "../headers/rat_rakwireless_rakx.h"
