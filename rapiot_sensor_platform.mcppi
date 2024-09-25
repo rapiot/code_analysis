@@ -46,7 +46,8 @@ File10=.\rat_radio_modules\headers\rat_rakwireless_rakx.h
 File11=.\rat_utilities\headers\rat_pic_utilities.h
 File12=.\rat_utilities\headers\rat_i2c_utilities.h
 File13=.\rat_utilities\headers\rat_uart_utilities.h
-Count=14
+File14=.\rat_sensors\headers\rat_maxim_integrated_max31855.h
+Count=15
 [EEPROM]
 File0=rapiot_sensor_platform.ihex
 Count=1

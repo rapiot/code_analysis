@@ -135,7 +135,7 @@ static float rat_convert_temperature (uint32_t temperature,
   result = 0;
   
   for (counter = 0;counter < length;++counter) {
-    if (value % 2 == 1) {
+    if ((value % 2) == 1) {
       result += pow(2, index);
     }
     
@@ -147,7 +147,7 @@ static float rat_convert_temperature (uint32_t temperature,
   // ---------------------------------------------------------------------------
   // Check the sign bit
   // ---------------------------------------------------------------------------
-  if (value % 2 == 1) {
+  if ((value % 2) == 1) {
     result = -result;
   }
 

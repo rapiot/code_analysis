@@ -80,9 +80,11 @@ static void rat_humidity_sensor_disable (void)
 // -----------------------------------------------------------------------------
 static float rat_humidity_sensor_convert_temperature (uint16_t temperature)
 {
-  float result;
+  float result = 0.0;
 
-  result = ( 175 * ( (float) temperature ) / 65535 ) - 45;
+  result = ( (float) temperature ) / 65535.0;
+  result = 175.0 * result;
+  result = result - 45.0;
 
   if (result < RAT_HUMIDITY_SENSOR_TEMPERATURE_MINIMUM) {
     result = RAT_HUMIDITY_SENSOR_TEMPERATURE_MINIMUM;
@@ -103,7 +105,8 @@ static float rat_humidity_sensor_convert_humidity (uint16_t humidity)
 {
   float result = 0.0;
 
-  result = 100 * ( (float) humidity ) / 65535;
+  result = ( (float) humidity ) / 65535.0;
+  result = 100.0 * result;
 
   if (result < RAT_HUMIDITY_SENSOR_HUMIDITY_MINIMUM) {
     result = RAT_HUMIDITY_SENSOR_HUMIDITY_MINIMUM;
