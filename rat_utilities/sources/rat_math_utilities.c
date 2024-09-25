@@ -298,7 +298,7 @@ uint8_t rat_calculate_crc (uint16_t value,
     checksum ^= (raw_data[counter_byte]);
 
     for (counter_bit = 8;counter_bit > 0;--counter_bit) {
-      if (checksum & 0x80) {
+      if ((checksum & 0x80) != 0x00) {
         checksum = (checksum << 1) ^ polynomial;
       } else {
         checksum = (checksum << 1);
