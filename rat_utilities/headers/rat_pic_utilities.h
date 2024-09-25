@@ -41,8 +41,8 @@ void rat_sleep (void);
 // -----------------------------------------------------------------------------
 // Clear watchdog
 //
-// Note! This is a very dangerous command, because the purpose of the watchdog is to make sure that
-// the microcontroller can recover from unexpected situations! Do not use this command unless
-// absolutely necessary!
+// Note! This is a very dangerous command, because the purpose of the watchdog
+// is to make sure that the microcontroller can recover from unexpected
+// situations! Do not use this command unless absolutely necessary!
 // -----------------------------------------------------------------------------
 void rat_clear_watchdog (void);

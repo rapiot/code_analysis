@@ -298,7 +298,7 @@ void rat_uart_receive_response_with_value (rat_uart_separator   leading_separato
   // Read value and response code
   // ---------------------------------------------------------------------------
   while (character_index < RAT_UART_BUFFER_SIZE && trailing_separators < 2) {
-    while (!UART1_Data_Ready()) {
+    while (UART1_Data_Ready() == 0) {
       // Wait for a new character
     }
 
