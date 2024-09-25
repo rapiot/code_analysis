@@ -179,7 +179,7 @@ static bool rat_radio_module_set_device_eui (void)
   rat_uart_clear_buffer();
   rat_radio_module_clear_buffers();
   
-  strcat(g_rat_req_buffer,"AT+DEVEUI=");
+  (void)strcat(g_rat_req_buffer,"AT+DEVEUI=");
   
   read_device_eui(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
 
@@ -204,7 +204,7 @@ static bool rat_radio_module_set_device_address (void)
   rat_uart_clear_buffer();
   rat_radio_module_clear_buffers();
 
-  strcat(g_rat_req_buffer,"AT+DEVADDR=");
+  (void)strcat(g_rat_req_buffer,"AT+DEVADDR=");
 
   read_device_address(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
 
@@ -231,7 +231,7 @@ static bool rat_radio_module_set_network_session_key (void)
   rat_uart_clear_buffer();
   rat_radio_module_clear_buffers();
 
-  strcat(g_rat_req_buffer,"AT+NWKSKEY=");
+  (void)strcat(g_rat_req_buffer,"AT+NWKSKEY=");
 
   read_network_session_key(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
 
@@ -256,7 +256,7 @@ static bool rat_radio_module_set_application_session_key (void)
   rat_uart_clear_buffer();
   rat_radio_module_clear_buffers();
 
-  strcat(g_rat_req_buffer,"AT+APPSKEY=");
+  (void)strcat(g_rat_req_buffer,"AT+APPSKEY=");
 
   read_application_session_key(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
 
@@ -281,7 +281,7 @@ bool rat_radio_module_set_abp_mode (void)
   rat_uart_clear_buffer();
   rat_radio_module_clear_buffers();
 
-  strcat(g_rat_req_buffer,"AT+NJM=0");
+  (void)strcat(g_rat_req_buffer,"AT+NJM=0");
 
   // ---------------------------------------------------------------------------
   // Send the request and check the response
@@ -336,7 +336,7 @@ bool rat_radio_module_transmit (uint8_t   uplink_length,
   rat_uart_clear_buffer();
   rat_radio_module_clear_buffers();
 
-  strcat(g_rat_req_buffer,"AT+CFM=0");
+  (void)strcat(g_rat_req_buffer,"AT+CFM=0");
 
   if (!rat_radio_command(g_rat_req_buffer,g_rat_rsp_buffer,false)) {
     return false;
@@ -348,9 +348,9 @@ bool rat_radio_module_transmit (uint8_t   uplink_length,
   rat_uart_clear_buffer();
   rat_radio_module_clear_buffers();
   
-  strcat(g_rat_req_buffer,"AT+SEND=");
-  strcat(g_rat_req_buffer,RAT_RADIO_MODULE_UPLINK_PORT);
-  strcat(g_rat_req_buffer,"AT+SEND=:");
+  (void)strcat(g_rat_req_buffer,"AT+SEND=");
+  (void)strcat(g_rat_req_buffer,RAT_RADIO_MODULE_UPLINK_PORT);
+  (void)strcat(g_rat_req_buffer,"AT+SEND=:");
 
   rat_hex_array_to_char_array(uplink_data,
                               uplink_length,
@@ -378,7 +378,7 @@ bool rat_radio_module_transmit (uint8_t   uplink_length,
   rat_uart_clear_buffer();
   rat_radio_module_clear_buffers();
   
-  strcat(g_rat_req_buffer,"AT+RECV=?");
+  (void)strcat(g_rat_req_buffer,"AT+RECV=?");
   
   *downlink_status = false;
 
