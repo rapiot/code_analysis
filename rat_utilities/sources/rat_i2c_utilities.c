@@ -66,7 +66,7 @@ void rat_i2c_write_stream (uint8_t   mode,
   // Stop condition (if applicable)
   // ---------------------------------------------------------------------------
   if (end == I2C_STOP_BIT_APPLIED) {
-    I2C1_Stop();
+    (void)I2C1_Stop();
   }
 }
 
@@ -117,6 +117,6 @@ void rat_i2c_read_stream (uint8_t   mode,
   // End (if applicable)
   // ---------------------------------------------------------------------------
   if (end == I2C_STOP_BIT_APPLIED) {
-    I2C1_Stop();
+    (void)I2C1_Stop();
   }
 }
