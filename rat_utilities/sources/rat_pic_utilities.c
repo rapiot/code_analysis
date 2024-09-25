@@ -25,9 +25,9 @@
 // -----------------------------------------------------------------------------
 // Peripherals
 // -----------------------------------------------------------------------------
-#define UART_ENABLED 1
-#define I2C_ENABLED  1
-#define SPI_ENABLED  0
+#define UART_ENABLED true
+#define I2C_ENABLED  true
+#define SPI_ENABLED  false
 
 #define UART_BAUD_RATE 9600
 

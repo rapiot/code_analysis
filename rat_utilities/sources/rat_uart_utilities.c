@@ -26,8 +26,8 @@
 // -----------------------------------------------------------------------------
 void rat_uart_clear_buffer ()
 {
-  while (UART1_Data_Ready()) {
-    (void) UART1_Data_Ready();
+  while (UART1_Data_Ready() != 0) {
+    (void) UART1_Read();
   }
 }
 
@@ -65,7 +65,7 @@ static void rat_uart_read_char (char character)
   char temp = '\0';
   
   while (true) {
-    while (!UART1_Data_Ready()) {
+    while (UART1_Data_Ready() == 0) {
       // Wait for a new character
     }
 
