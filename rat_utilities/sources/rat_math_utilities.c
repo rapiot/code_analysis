@@ -86,7 +86,7 @@ void rat_hex_array_to_char_array (uint8_t * hex_array,
   
   uint8_t hex_index = 0;
 
-  for (hex_index = 0;hex_index < hex_array_length;hex_index++) {
+  for (hex_index = 0;hex_index < hex_array_length;++hex_index) {
     msb_character = rat_hex_to_char(hex_array[hex_index]) >> 4;
     lsb_character = rat_hex_to_char(hex_array[hex_index]) % 16;
     
@@ -116,7 +116,7 @@ void rat_char_array_to_hex_array (char    * char_array,
   uint8_t msb_hex = 0;
   uint8_t lsb_hex = 0;
 
-  for (char_index = 0;char_index < char_array_length / 2;char_index++) {
+  for (char_index = 0;char_index < char_array_length / 2;++char_index) {
     msb_index = char_array_index + 2 * char_index;
     lsb_index = char_array_index + 2 * char_index + 1;
     
@@ -135,7 +135,7 @@ void rat_clear_string (char     * char_array,
 {
   uint16_t counter = 0;
 
-  for (counter = 0;counter < length;counter++) {
+  for (counter = 0;counter < length;++counter) {
     char_array[counter] = '\0';
   }
 }
@@ -294,7 +294,7 @@ uint8_t rat_calculate_crc (uint16_t value,
   // ---------------------------------------------------------------------------
   // Calculate the checksum
   // ---------------------------------------------------------------------------
-  for (counter_byte = 0;counter_byte < 2;counter_byte++) {
+  for (counter_byte = 0;counter_byte < 2;++counter_byte) {
     checksum ^= (raw_data[counter_byte]);
 
     for (counter_bit = 8;counter_bit > 0;--counter_bit) {
@@ -330,7 +330,7 @@ bool rat_string_compare (char * a,
   if (length_a < length_b) {
     result = false;
   } else {
-    for (index = 0;index < length_b;index++) {
+    for (index = 0;index < length_b;++index) {
       if (a[index] != b[index]) {
         result = false;
       
@@ -360,7 +360,7 @@ bool rat_string_compare_reverse (char * a,
   if (length_a < length_b) {
     result = false;
   } else {
-    for (index = 0;index < length_b;index++) {
+    for (index = 0;index < length_b;++index) {
       if (a[length_a - 1 - index] != b[length_b - 1 - index]) {
         result = false;
 
@@ -422,7 +422,7 @@ void rat_string_sub (char * a,
 {
   uint8_t counter;
   
-  for (counter = index;counter < index + length;counter++) {
+  for (counter = index;counter < index + length;++counter) {
     b[counter - index] = a[counter];
   }
 }
@@ -446,7 +446,7 @@ void rat_wait_interrupts (uint8_t interrupts)
 {
   uint8_t counter;
   
-  for (counter = 0;counter < interrupts;counter++) {
+  for (counter = 0;counter < interrupts;++counter) {
     rat_wait_interrupt();
   }
 }
