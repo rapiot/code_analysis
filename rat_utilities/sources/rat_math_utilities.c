@@ -281,7 +281,7 @@ uint8_t rat_calculate_crc (uint16_t value,
   // ---------------------------------------------------------------------------
   // Data
   // ---------------------------------------------------------------------------
-  uint8_t raw_data [2];
+  uint8_t raw_data [2] = {0x00};
 
   // ---------------------------------------------------------------------------
   // Initialisation
@@ -420,7 +420,7 @@ void rat_string_sub (char * a,
                      uint8_t index,
                      uint8_t length)
 {
-  uint8_t counter;
+  uint8_t counter = 0;
   
   for (counter = index;counter < (index + length);++counter) {
     b[counter - index] = a[counter];
@@ -444,7 +444,7 @@ void rat_wait_interrupt (void)
 // -----------------------------------------------------------------------------
 void rat_wait_interrupts (uint8_t interrupts)
 {
-  uint8_t counter;
+  uint8_t counter = 0;
   
   for (counter = 0;counter < interrupts;++counter) {
     rat_wait_interrupt();
