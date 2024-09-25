@@ -43,9 +43,9 @@ static void rat_thermocouple_sensor_set_pins (void)
   RAT_THERMOCOUPLE_SENSOR_RGT_PWR_TYP = 0b0;
   RAT_THERMOCOUPLE_SENSOR_RGT_PWR_PIN = 0b0;
   
-  // --------------------------------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   // Chip select pins
-  // --------------------------------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   RAT_THERMOCOUPLE_SENSOR_LFT_CSL_DIR = 0b0;
   RAT_THERMOCOUPLE_SENSOR_LFT_CSL_TYP = 0b0;
   RAT_THERMOCOUPLE_SENSOR_LFT_CSL_PIN = 0b0;
