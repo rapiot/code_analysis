@@ -14,26 +14,26 @@
 // -----------------------------------------------------------------------------
 // Device EUI
 // -----------------------------------------------------------------------------
-#define LORAWAN_DEVICE_EUI_BASE              0x00
+#define DEVEUI_BASE 0x00
 
 // -----------------------------------------------------------------------------
 // APB parameters
 // -----------------------------------------------------------------------------
-#define LORAWAN_DEVICE_ADDRESS_BASE          0x10
-#define LORAWAN_NETWORK_SESSION_KEY_BASE     0x20
-#define LORAWAN_APPLICATION_SESSION_KEY_BASE 0x30
+#define DEVADD_BASE 0x10
+#define DEVNSK_BASE 0x20
+#define DEVASK_BASE 0x30
 
 // -----------------------------------------------------------------------------
 // Device EUI
 // -----------------------------------------------------------------------------
-#define LORAWAN_DEVICE_EUI_BITS                64
+#define DEVEUI_BITS  64
 
 // -----------------------------------------------------------------------------
 // APB parameters
 // -----------------------------------------------------------------------------
-#define LORAWAN_DEVICE_ADDRESS_BITS            32
-#define LORAWAN_NETWORK_SESSION_KEY_BITS      128
-#define LORAWAN_APPLICATION_SESSION_KEY_BITS  128
+#define DEVADD_BITS  32
+#define DEVNSK_BITS 128
+#define DEVASK_BITS 128
 
 // -----------------------------------------------------------------------------
 // Read the parameters of the ABP
