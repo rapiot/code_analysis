@@ -30,31 +30,46 @@ void read_abp_parameters (char * device_address,
                           char * network_session_key,
                           char * application_session_key)
 {
+  // ---------------------------------------------------------------------------
+  // Auxiliary variables
+  // ---------------------------------------------------------------------------
   uint8_t counter = 0;
   uint8_t byte    = 0x00;
 
-  for (counter = 0;counter < DEVADD_BITS / 8;++counter) {
+  // ---------------------------------------------------------------------------
+  // Device address
+  // ---------------------------------------------------------------------------
+  for (counter = 0;counter < ( DEVADD_BITS / 8 );++counter) {
     byte = EEPROM_Read(DEVADD_BASE + counter);
   
     device_address[counter * 2]     = rat_hex_to_char(byte >> 4);
     device_address[counter * 2 + 1] = rat_hex_to_char(byte & 0x0F);
   }
 
-  for (counter = 0;counter < DEVEUI_BITS / 8;++counter) {
+  // ---------------------------------------------------------------------------
+  // Device EUI
+  // ---------------------------------------------------------------------------
+  for (counter = 0;counter < ( DEVEUI_BITS / 8 );++counter) {
     byte = EEPROM_Read(DEVEUI_BASE + counter);
     
     device_eui[counter * 2]     = rat_hex_to_char(byte >> 4);
     device_eui[counter * 2 + 1] = rat_hex_to_char(byte & 0x0F);
   }
 
-  for (counter = 0;counter < DEVNSK_BITS / 8;++counter) {
+  // ---------------------------------------------------------------------------
+  // Network session key
+  // ---------------------------------------------------------------------------
+  for (counter = 0;counter < ( DEVNSK_BITS / 8 );++counter) {
     byte = EEPROM_Read(DEVNSK_BASE + counter);
     
     network_session_key[counter * 2]     = rat_hex_to_char(byte >> 4);
     network_session_key[counter * 2 + 1] = rat_hex_to_char(byte & 0x0F);
   }
 
-  for (counter = 0;counter < DEVASK_BITS / 8;++counter) {
+  // ---------------------------------------------------------------------------
+  // Application session key
+  // ---------------------------------------------------------------------------
+  for (counter = 0;counter < ( DEVASK_BITS / 8 );++counter) {
     byte = EEPROM_Read(DEVASK_BASE + counter);
     
     application_session_key[counter * 2]     = rat_hex_to_char(byte >> 4);
@@ -62,12 +77,15 @@ void read_abp_parameters (char * device_address,
   }
 }
 
+// -----------------------------------------------------------------------------
+// Read the device address
+// -----------------------------------------------------------------------------
 void read_device_address (char * device_address)
 {
   uint8_t counter = 0;
   uint8_t byte    = 0x00;
 
-  for (counter = 0;counter < DEVADD_BITS / 8;++counter) {
+  for (counter = 0;counter < ( DEVADD_BITS / 8 );++counter) {
     byte = EEPROM_Read(DEVADD_BASE + counter);
   
     device_address[counter * 2]     = rat_hex_to_char(byte >> 4);
@@ -75,12 +93,15 @@ void read_device_address (char * device_address)
   }
 }
 
+// -----------------------------------------------------------------------------
+// Read the device EUI
+// -----------------------------------------------------------------------------
 void read_device_eui (char * device_eui)
 {
   uint8_t counter = 0;
   uint8_t byte    = 0x00;
 
-  for (counter = 0;counter < DEVEUI_BITS / 8;++counter) {
+  for (counter = 0;counter < ( DEVEUI_BITS / 8 );++counter) {
     byte = EEPROM_Read(DEVEUI_BASE + counter);
     
     device_eui[counter * 2]     = rat_hex_to_char(byte >> 4);
@@ -88,12 +109,15 @@ void read_device_eui (char * device_eui)
   }
 }
 
+// -----------------------------------------------------------------------------
+// Read the network session key
+// -----------------------------------------------------------------------------
 void read_network_session_key (char * network_session_key)
 {
   uint8_t counter = 0;
   uint8_t byte    = 0x00;
 
-  for (counter = 0;counter < DEVNSK_BITS / 8;++counter) {
+  for (counter = 0;counter < ( DEVNSK_BITS / 8 );++counter) {
     byte = EEPROM_Read(DEVNSK_BASE + counter);
     
     network_session_key[counter * 2]     = rat_hex_to_char(byte >> 4);
@@ -101,12 +125,15 @@ void read_network_session_key (char * network_session_key)
   }
 }
 
+// -----------------------------------------------------------------------------
+// Read the application session key
+// -----------------------------------------------------------------------------
 void read_application_session_key (char * application_session_key)
 {
   uint8_t counter = 0;
   uint8_t byte    = 0x00;
 
-  for (counter = 0;counter < DEVASK_BITS / 8;++counter) {
+  for (counter = 0;counter < ( DEVASK_BITS / 8 );++counter) {
     byte = EEPROM_Read(DEVASK_BASE + counter);
     
     application_session_key[counter * 2]     = rat_hex_to_char(byte >> 4);

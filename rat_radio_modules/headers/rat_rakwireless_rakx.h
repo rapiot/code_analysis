@@ -67,10 +67,10 @@ bool rat_radio_module_set_abp_parameters (void);
 // -----------------------------------------------------------------------------
 // Transmit and receive a message
 // -----------------------------------------------------------------------------
-bool rat_radio_module_transmit (uint8_t   uplink_length,      // Uplink payload length
-                                uint8_t * uplink_data,        // Uplink payload data
-                                bool    * uplink_status,      // Uplink status
+bool rat_radio_module_transmit (uint8_t   uplink_length,
+                                uint8_t * uplink_data,
+                                bool    * uplink_status,
 
-                                uint8_t   downlink_length,    // Downlink data length
-                                uint8_t * downlink_data,      // Downlink payload data
-                                bool    * downlink_status);   // Downlink status
+                                uint8_t   downlink_length,
+                                uint8_t * downlink_data,
+                                bool    * downlink_status);
