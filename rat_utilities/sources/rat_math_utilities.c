@@ -59,7 +59,7 @@ uint8_t rat_char_to_hex (char value)
 {
   uint8_t result = 0x00;
 
-  if (isdigit(value)) {
+  if (isdigit(value) != 0) {
     result = value - 0x30;
   } else {
     result = value - 0x37;
