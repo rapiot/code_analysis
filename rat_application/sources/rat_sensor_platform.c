@@ -153,8 +153,8 @@ void app_task (void)
   bool uplink_status    = false;
   bool downlink_status  = false;
 
-  uint8_t uplink_data [APP_UPLINK_DATA_SIZE];
-  uint8_t downlink_data [APP_DOWNLINK_DATA_SIZE];
+  uint8_t uplink_data   [APP_UPLINK_DATA_SIZE]   = {0x00};
+  uint8_t downlink_data [APP_DOWNLINK_DATA_SIZE] = {0x00};
 
   float temperature = 0;
   float humidity    = 0;

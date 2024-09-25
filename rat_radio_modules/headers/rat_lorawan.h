@@ -43,12 +43,12 @@
 //   - Network session key,                     128 bits - Addresses 0x20 - 0x2F
 //   - Application session key,                 128 bits - Addresses 0x30 - 0x3F
 // -----------------------------------------------------------------------------
-void lorawan_read_abp_parameters (char * device_address,
-                                  char * device_eui,
-                                  char * network_session_key,
-                                  char * application_session_key);
+void read_abp_parameters (char * device_address,
+                          char * device_eui,
+                          char * network_session_key,
+                          char * application_session_key);
                                   
-void lorawan_read_device_address (char * device_address);
-void lorawan_read_device_eui (char * device_eui);
-void lorawan_read_network_session_key (char * network_session_key);
-void lorawan_read_application_session_key (char * application_session_key);
+void read_device_address (char * device_address);
+void read_device_eui (char * device_eui);
+void read_network_session_key (char * network_session_key);
+void read_application_session_key (char * application_session_key);

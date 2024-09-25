@@ -183,7 +183,7 @@ static bool rat_radio_module_set_device_eui (void)
   
   strcat(g_rat_req_buffer,"AT+DEVEUI=");
   
-  lorawan_read_device_eui(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
+  read_device_eui(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
 
   // ---------------------------------------------------------------------------
   // Send the request and check the response
@@ -208,7 +208,7 @@ static bool rat_radio_module_set_device_address (void)
 
   strcat(g_rat_req_buffer,"AT+DEVADDR=");
 
-  lorawan_read_device_address(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
+  read_device_address(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
 
   // ---------------------------------------------------------------------------
   // Send the request and check the response
@@ -235,7 +235,7 @@ static bool rat_radio_module_set_network_session_key (void)
 
   strcat(g_rat_req_buffer,"AT+NWKSKEY=");
 
-  lorawan_read_network_session_key(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
+  read_network_session_key(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
 
   // ---------------------------------------------------------------------------
   // Send the request and check the response
@@ -260,7 +260,7 @@ static bool rat_radio_module_set_application_session_key (void)
 
   strcat(g_rat_req_buffer,"AT+APPSKEY=");
 
-  lorawan_read_application_session_key(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
+  read_application_session_key(&g_rat_req_buffer[strlen(g_rat_req_buffer)]);
 
   // ---------------------------------------------------------------------------
   // Send the request and check the response
