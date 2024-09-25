@@ -219,8 +219,8 @@ uint8_t rat_humidity_sensor_read_serial (uint8_t * serial)
   // ---------------------------------------------------------------------------
   // Return
   // ---------------------------------------------------------------------------
-  if (crc[0] == response[2] &&
-      crc[1] == response[5]) {
+  if ((crc[0] == response[2]) &&
+      (crc[1] == response[5])) {
     return 1;
   } else {
     return 0;
