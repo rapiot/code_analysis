@@ -186,13 +186,15 @@ void app_task (void)
   // ---------------------------------------------------------------------------
   // Transmit
   // ---------------------------------------------------------------------------
-  rat_radio_module_transmit(APP_UPLINK_DATA_SIZE,     // Uplink data length
-                            uplink_data,              // Uplink data
-                            &uplink_status,           // Uplink status
+  if (!rat_radio_module_transmit(APP_UPLINK_DATA_SIZE,
+                            uplink_data,
+                            &uplink_status,
 
-                            APP_DOWNLINK_DATA_SIZE,   // Downlink data length
-                            downlink_data,            // Downlink data
-                            &downlink_status);        // Downlink status
+                            APP_DOWNLINK_DATA_SIZE,
+                            downlink_data,
+                            &downlink_status)) {
+    rat_reset();
+  }
                             
   // ---------------------------------------------------------------------------
   // Set the amount of the sleep cycles
