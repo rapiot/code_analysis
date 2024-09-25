@@ -107,7 +107,8 @@ static float rat_convert_temperature (uint32_t temperature,
   // ---------------------------------------------------------------------------
   // Auxiliary variables
   // ---------------------------------------------------------------------------
-  uint8_t index   = 0;
+  int8_t index    = 0;
+  
   uint8_t length  = 0;
   uint8_t counter = 0;
   
