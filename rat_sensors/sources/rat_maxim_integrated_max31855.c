@@ -133,7 +133,7 @@ static float rat_convert_temperature (uint32_t temperature,
   
   result = 0;
   
-  for (counter = 0;counter < length;counter++) {
+  for (counter = 0;counter < length;++counter) {
     if (value % 2 == 1) {
       result += pow(2, index);
     }
@@ -229,8 +229,8 @@ void rat_thermocouple_sensor_measure (float   * thermocouple_temperature_lft,
    
     rat_delay(RAT_THERMOCOUPLE_SENSOR_CHIP_SELECT_DELAY);
   
-    for (counter = 0;counter < 4;counter++) {
-      response[n] = SPI_Read(dummy_buffer);
+    for (counter = 0;counter < 4;++counter) {
+      response[counter] = SPI_Read(dummy_buffer);
     }
   
     rat_delay(RAT_THERMOCOUPLE_SENSOR_CHIP_SELECT_DELAY);
