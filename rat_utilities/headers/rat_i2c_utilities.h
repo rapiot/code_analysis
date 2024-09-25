@@ -10,7 +10,8 @@
 // -----------------------------------------------------------------------------
 // I2C Utilities Header File
 //
-// The purpose of the utilities is to provide a high level layer for the I2C functions of mikroC.
+// The purpose of the utilities is to provide a high level layer
+// for the I2C functions of mikroC.
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
@@ -36,11 +37,11 @@
 // -----------------------------------------------------------------------------
 // Write
 //
-//   mode    - Defines if the address is defined. If the address is not defined, it is ignored.
+//   mode    - Defines if the address has been defined.
 //   address - The address of the device without the R/W bit.
 //   length  - The length of the payload.
 //   payload - The payload.
-//   end     - Defines if the stop bit is applied. If the stop bit is not applied, it is ignored.
+//   end     - Defines if the stop bit has been applied.
 // -----------------------------------------------------------------------------
 void rat_i2c_write_stream (uint8_t   mode,
                            uint8_t   address,
@@ -51,11 +52,11 @@ void rat_i2c_write_stream (uint8_t   mode,
 // -----------------------------------------------------------------------------
 // Read
 //
-//   mode    - Defines if the address is defined. If the address is not defined, it is ignored.
+//   mode    - Defines if the address has been defined.
 //   address - The address of the device without the R/W bit.
 //   length  - The length of the payload.
 //   payload - The payload.
-//   end     - Defines if the stop bit is applied. If the stop bit is not applied, it is ignored.
+//   end     - Defines if the stop bit has been applied.
 // -----------------------------------------------------------------------------
 void rat_i2c_read_stream (uint8_t   mode,
                           uint8_t   address,

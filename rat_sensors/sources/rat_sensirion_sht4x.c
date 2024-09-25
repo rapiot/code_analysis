@@ -101,7 +101,7 @@ static float rat_humidity_sensor_convert_temperature (uint16_t temperature)
 // -----------------------------------------------------------------------------
 static float rat_humidity_sensor_convert_humidity (uint16_t humidity)
 {
-  float result;
+  float result = 0.0;
 
   result = 100 * ( (float) humidity ) / 65535;
 
@@ -136,7 +136,7 @@ void rat_humidity_sensor_software_reset (void)
   // ---------------------------------------------------------------------------
   // Request
   // ---------------------------------------------------------------------------
-  uint8_t request [2];
+  uint8_t request [2] = {0x00};
 
   request[0] = RAT_HUMIDITY_SENSOR_SOFT_RESET >> 8;
   request[1] = RAT_HUMIDITY_SENSOR_SOFT_RESET % 256;
@@ -167,7 +167,7 @@ uint8_t rat_humidity_sensor_read_serial (uint8_t * serial)
   uint16_t serial_high = 0x0000;
   uint16_t serial_low  = 0x0000;
   
-  uint8_t crc [2] = {0x00,0x00};
+  uint8_t crc [2] = {0x00};
 
   // ---------------------------------------------------------------------------
   // Request
@@ -230,7 +230,7 @@ uint8_t rat_humidity_sensor_read_serial (uint8_t * serial)
 // Returns true if the checksums match; false otherwise.
 // -----------------------------------------------------------------------------
 bool rat_humidity_sensor_measure (float * temperature,
-                                     float * humidity)
+                                  float * humidity)
 {
   // ---------------------------------------------------------------------------
   // Request and response

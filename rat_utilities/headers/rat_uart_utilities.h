@@ -29,11 +29,12 @@
 // Carrier return - '\r' - 0x0D (13)
 // New line       - '\n' - 0x0A (10)
 // -----------------------------------------------------------------------------
-typedef enum rat_uart_separators {RAT_UART_CARRIER_RETURN_AND_NEW_LINE,   // "\r\n"
-                                  RAT_UART_CARRIER_RETURN,                // '\r'
-                                  RAT_UART_NEW_LINE,                      // '\n'
-                                  RAT_UART_NONE}                          // No separator
-                                 rat_uart_separator;
+typedef enum rat_uart_separators {
+  RAT_UART_CARRIER_RETURN_AND_NEW_LINE,   // "\r\n"
+  RAT_UART_CARRIER_RETURN,                // '\r'
+  RAT_UART_NEW_LINE,                      // '\n'
+  RAT_UART_NONE}                          // No separator
+rat_uart_separator;
 
 // -----------------------------------------------------------------------------
 // Functions

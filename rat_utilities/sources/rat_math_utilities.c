@@ -470,13 +470,16 @@ uint32_t rat_interrupt_counter (void)
 // -----------------------------------------------------------------------------
 // Interrupt routine implementation
 //
-// Note that the implementation of the interrupt routine will be called automatically in case of
-// an interrupt. However, it is up to the application to check which interrupt has been generated.
-// It is also up to the application to clear interrupts unless otherwise stated.
+// Note that the implementation of the interrupt routine will be called
+// automatically in case of an interrupt. However, it is up to the application
+// to check which interrupt has been generated. It is also up to the application
+// to clear interrupts unless otherwise stated.
 // -----------------------------------------------------------------------------
 void interrupt (void) {
-  if (PIR1.TMR1IF == 0b1) {    // Check timer 1 interrupt flag
-    PIR1.TMR1IF = 0b0;         // Clear timer 1 interrupt flag (must be cleared by the software)
+  // Check timer 1 interrupt flag
+  if (PIR1.TMR1IF == 0b1) {
+    // Clear timer 1 interrupt flag (must be cleared by the software)
+    PIR1.TMR1IF = 0b0;
 
     g_interrupt_counter++;
   }

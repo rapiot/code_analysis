@@ -279,11 +279,11 @@ void rat_mcu_init (void)
 void rat_delay (uint16_t limit)
 {
   // Auxiliary variables
-  uint32_t init_cycles;
-  uint32_t curr_cycles;
-  uint32_t diff_cycles;
+  uint32_t init_cycles  = 0;
+  uint32_t curr_cycles  = 0;
+  uint32_t diff_cycles  = 0;
 
-  uint32_t milliseconds;
+  uint32_t milliseconds = 0;
 
   // Set the init state
   init_cycles = TMR1H;
