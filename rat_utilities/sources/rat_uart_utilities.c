@@ -24,7 +24,7 @@
 // -----------------------------------------------------------------------------
 // Clear the buffer
 // -----------------------------------------------------------------------------
-void rat_uart_clear_buffer ()
+void rat_uart_clear_buffer (void)
 {
   while (UART1_Data_Ready() != 0) {
     (void) UART1_Read();
@@ -115,8 +115,8 @@ static bool rat_check_separator (rat_uart_separator   separator,
   // ---------------------------------------------------------------------------
   if (separator == RAT_UART_CARRIER_RETURN_AND_NEW_LINE) {
     if (index > 0) {
-      if (stream[index]     == '\n' &&
-          stream[index - 1] == '\r') {
+      if ((stream[index]     == '\n') &&
+          (stream[index - 1] == '\r')) {
         return true;
       } else {
         return false;
@@ -179,8 +179,8 @@ static void rat_remove_separator (rat_uart_separator   separator,
   // ---------------------------------------------------------------------------
   // '\r' or '\n'
   // ---------------------------------------------------------------------------
-  } else if (separator == RAT_UART_CARRIER_RETURN ||
-             separator == RAT_UART_NEW_LINE) {
+  } else if ((separator == RAT_UART_CARRIER_RETURN) ||
+             (separator == RAT_UART_NEW_LINE)) {
     if (new_index > 0) {
       stream[new_index] = '\0';
     
@@ -221,7 +221,7 @@ void rat_uart_request (rat_uart_separator   leading_separator,
     
     character_index++;
     
-    if (character_index == RAT_UART_BUFFER_SIZE - 1) {
+    if (character_index == (RAT_UART_BUFFER_SIZE - 1)) {
       break;
     }
   }
@@ -257,7 +257,8 @@ void rat_uart_response (rat_uart_separator   leading_separator,
   // ---------------------------------------------------------------------------
   // Read response code
   // ---------------------------------------------------------------------------
-  while (character_index < RAT_UART_BUFFER_SIZE && trailing_separators < 1) {
+  while ((character_index < RAT_UART_BUFFER_SIZE) &&
+         (trailing_separators < 1)) {
     while (UART1_Data_Ready() == 0) {
       // Wait for a new character
     }
@@ -297,7 +298,8 @@ void rat_uart_response_with_value (rat_uart_separator   leading_separator,
   // ---------------------------------------------------------------------------
   // Read value and response code
   // ---------------------------------------------------------------------------
-  while (character_index < RAT_UART_BUFFER_SIZE && trailing_separators < 2) {
+  while ((character_index < RAT_UART_BUFFER_SIZE) && 
+         (trailing_separators < 2)) {
     while (UART1_Data_Ready() == 0) {
       // Wait for a new character
     }

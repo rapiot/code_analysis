@@ -301,9 +301,9 @@ void rat_delay (uint16_t limit)
     curr_cycles += TMR1L;
 
     if (curr_cycles < init_cycles) {
-      diff_cycles += curr_cycles + 65535 - init_cycles;
+      diff_cycles += (curr_cycles + 65535) - init_cycles;
     } else {
-      diff_cycles += curr_cycles - init_cycles;
+      diff_cycles +=  curr_cycles          - init_cycles;
     }
 
     init_cycles = curr_cycles;

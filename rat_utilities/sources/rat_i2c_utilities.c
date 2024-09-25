@@ -106,7 +106,7 @@ void rat_i2c_read_stream (uint8_t   mode,
   // Read the payload
   // ---------------------------------------------------------------------------
   for (byte_index = 0;byte_index < length;++byte_index) {
-    if (byte_index == length - 1) {
+    if (byte_index == (length - 1)) {
       payload[byte_index] = I2C1_Rd(0);
     } else {
       payload[byte_index] = I2C1_Rd(1);

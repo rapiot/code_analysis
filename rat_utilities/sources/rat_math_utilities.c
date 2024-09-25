@@ -422,7 +422,7 @@ void rat_string_sub (char * a,
 {
   uint8_t counter;
   
-  for (counter = index;counter < index + length;++counter) {
+  for (counter = index;counter < (index + length);++counter) {
     b[counter - index] = a[counter];
   }
 }
