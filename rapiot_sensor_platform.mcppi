@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=rat_utilities\sources\rat_pic_utilities.c
+Value=rat_utilities\sources\rat_math_utilities.c
 [USE_EEPROM]
 Value=1
 [USE_HEAP]

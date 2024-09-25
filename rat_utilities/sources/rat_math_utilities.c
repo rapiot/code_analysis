@@ -90,8 +90,8 @@ void rat_hex_array_to_char_array (uint8_t * hex_array,
     msb_character = rat_hex_to_char(hex_array[hex_index]) >> 4;
     lsb_character = rat_hex_to_char(hex_array[hex_index]) % 16;
     
-    char_array[char_array_index + 2 * hex_index]     = msb_character;
-    char_array[char_array_index + 2 * hex_index + 1] = lsb_character;
+    char_array[char_array_index + (2 * hex_index)]     = msb_character;
+    char_array[char_array_index + (2 * hex_index) + 1] = lsb_character;
   }
 }
 
@@ -117,8 +117,8 @@ void rat_char_array_to_hex_array (char    * char_array,
   uint8_t lsb_hex = 0;
 
   for (char_index = 0;char_index < char_array_length / 2;++char_index) {
-    msb_index = char_array_index + 2 * char_index;
-    lsb_index = char_array_index + 2 * char_index + 1;
+    msb_index = char_array_index + (2 * char_index);
+    lsb_index = char_array_index + (2 * char_index) + 1;
     
     msb_hex = rat_char_to_hex(char_array[msb_index]) << 4;
     lsb_hex = rat_char_to_hex(char_array[lsb_index]);
