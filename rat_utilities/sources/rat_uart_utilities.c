@@ -40,20 +40,20 @@ static void rat_uart_write_separator (rat_uart_separator separator)
   // "\r\n"
   // ---------------------------------------------------------------------------
   if (separator == RAT_UART_CARRIER_RETURN_AND_NEW_LINE) {
-    UART1_Write('\r');
-    UART1_Write('\n');
+    (void)UART1_Write('\r');
+    (void)UART1_Write('\n');
 
   // ---------------------------------------------------------------------------
   // '\r'
   // ---------------------------------------------------------------------------
   } else if (separator == RAT_UART_CARRIER_RETURN) {
-    UART1_Write('\r');
+    (void)UART1_Write('\r');
 
   // ---------------------------------------------------------------------------
   // '\n'
   // ---------------------------------------------------------------------------
   } else if (separator == RAT_UART_NEW_LINE) {
-    UART1_Write('\n');
+    (void)UART1_Write('\n');
   }
 }
 
@@ -217,7 +217,7 @@ void rat_uart_request (rat_uart_separator   leading_separator,
   // Send request
   // ---------------------------------------------------------------------------
   while (request[character_index] != '\0') {
-    UART1_Write(request[character_index]);
+    (void)UART1_Write(request[character_index]);
     
     character_index++;
     
