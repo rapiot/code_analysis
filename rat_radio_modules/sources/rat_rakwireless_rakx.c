@@ -52,21 +52,19 @@ static void rat_radio_module_clear_buffers (void)
 // Check the response
 // -----------------------------------------------------------------------------
 static bool rat_check_response (char * rsp,
-                                bool   val)
+                                bool   value_expected)
 {
-  if (val) {
-    if (rat_string_compare_reverse(rsp,"OK")) {
-      return true;
-    } else {
-      return false;
-    }
+  bool result = false;
+  
+  if (value_expected && rat_string_compare_reverse(rsp,"OK")) {
+    result = true;
+  } else if (!value_expected && rat_string_compare(rsp,"OK")) {
+    result = true;
   } else {
-    if (rat_string_compare(rsp,"OK")) {
-      return true;
-    } else {
-      return false;
-    }
+    result = false;
   }
+
+  return result;
 }
 
 // -----------------------------------------------------------------------------
@@ -308,10 +306,10 @@ bool rat_radio_module_set_abp_parameters (void)
   // ---------------------------------------------------------------------------
   // Set the parameters to the radio module
   // ---------------------------------------------------------------------------
-  result &= rat_radio_module_set_device_eui();
-  result &= rat_radio_module_set_device_address();
-  result &= rat_radio_module_set_network_session_key();
-  result &= rat_radio_module_set_application_session_key();
+  result = result && rat_radio_module_set_device_eui();
+  result = result && rat_radio_module_set_device_address();
+  result = result && rat_radio_module_set_network_session_key();
+  result = result && rat_radio_module_set_application_session_key();
 
   return result;
 }
