@@ -30,8 +30,8 @@ void lorawan_read_abp_parameters (char * device_address,
                                   char * network_session_key,
                                   char * application_session_key)
 {
-  uint8_t counter;
-  uint8_t byte;
+  uint8_t counter = 0;
+  uint8_t byte    = 0x00;
 
   for (counter = 0;counter < DEVADD_BITS / 8;counter++) {
     byte = EEPROM_Read(DEVADD_BASE + counter);
@@ -64,8 +64,8 @@ void lorawan_read_abp_parameters (char * device_address,
 
 void lorawan_read_device_address (char * device_address)
 {
-  uint8_t counter;
-  uint8_t byte;
+  uint8_t counter = 0;
+  uint8_t byte    = 0x00;
 
   for (counter = 0;counter < DEVADD_BITS / 8;counter++) {
     byte = EEPROM_Read(DEVADD_BASE + counter);
@@ -77,8 +77,8 @@ void lorawan_read_device_address (char * device_address)
 
 void lorawan_read_device_eui (char * device_eui)
 {
-  uint8_t counter;
-  uint8_t byte;
+  uint8_t counter = 0;
+  uint8_t byte    = 0x00;
 
   for (counter = 0;counter < DEVEUI_BITS / 8;counter++) {
     byte = EEPROM_Read(DEVEUI_BASE + counter);
@@ -90,8 +90,8 @@ void lorawan_read_device_eui (char * device_eui)
 
 void lorawan_read_network_session_key (char * network_session_key)
 {
-  uint8_t counter;
-  uint8_t byte;
+  uint8_t counter = 0;
+  uint8_t byte    = 0x00;
 
   for (counter = 0;counter < DEVNSK_BITS / 8;counter++) {
     byte = EEPROM_Read(DEVNSK_BASE + counter);
@@ -103,8 +103,8 @@ void lorawan_read_network_session_key (char * network_session_key)
 
 void lorawan_read_application_session_key (char * application_session_key)
 {
-  uint8_t counter;
-  uint8_t byte;
+  uint8_t counter = 0;
+  uint8_t byte    = 0x00;
 
   for (counter = 0;counter < DEVASK_BITS / 8;counter++) {
     byte = EEPROM_Read(DEVASK_BASE + counter);
