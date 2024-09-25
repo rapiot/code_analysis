@@ -307,8 +307,8 @@ bool rat_humidity_sensor_measure (float * temperature,
   // ---------------------------------------------------------------------------
   // Return
   // ---------------------------------------------------------------------------
-  if (crc[0] == response[2] &&
-      crc[1] == response[5]) {
+  if ((crc[0] == response[2]) &&
+      (crc[1] == response[5])) {
     return true;
   } else {
     return false;

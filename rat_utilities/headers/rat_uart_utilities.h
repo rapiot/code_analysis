@@ -48,20 +48,20 @@ void rat_uart_clear_buffer (void);
 // -----------------------------------------------------------------------------
 // Send request
 // -----------------------------------------------------------------------------
-void rat_uart_send_request (rat_uart_separator   leading_separator,
-                            rat_uart_separator   trailing_separator,
-                            char               * request);
+void rat_uart_request (rat_uart_separator   leading_separator,
+                       rat_uart_separator   trailing_separator,
+                       char               * request);
 
 // -----------------------------------------------------------------------------
 // Receive response without a value
 // -----------------------------------------------------------------------------
-void rat_uart_receive_response (rat_uart_separator   leading_separator,
-                                rat_uart_separator   trailing_separator,
-                                char               * response);
+void rat_uart_response (rat_uart_separator   leading_separator,
+                        rat_uart_separator   trailing_separator,
+                        char               * response);
 
 // -----------------------------------------------------------------------------
 // Receive response with a value
 // -----------------------------------------------------------------------------
-void rat_uart_receive_response_with_value (rat_uart_separator   leading_separator,
-                                           rat_uart_separator   trailing_separator,
-                                           char               * response);
+void rat_uart_response_with_value (rat_uart_separator   leading_separator,
+                                   rat_uart_separator   trailing_separator,
+                                   char               * response);

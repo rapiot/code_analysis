@@ -82,21 +82,21 @@ static bool rat_radio_command (char * req,
   // ---------------------------------------------------------------------------
   // Request
   // ---------------------------------------------------------------------------
-  rat_uart_send_request(RAT_UART_NONE,
-                        RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
-                        req);
+  rat_uart_request(RAT_UART_NONE,
+                   RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
+                   req);
 
   // ---------------------------------------------------------------------------
   // Response
   // ---------------------------------------------------------------------------
   if (val) {
-    rat_uart_receive_response_with_value(RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
-                                         RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
-                                         rsp);
+    rat_uart_response_with_value(RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
+                                 RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
+                                 rsp);
   } else {
-    rat_uart_receive_response(RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
-                              RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
-                              rsp);
+    rat_uart_response(RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
+                      RAT_UART_CARRIER_RETURN_AND_NEW_LINE,
+                      rsp);
   }
 
   // ---------------------------------------------------------------------------
